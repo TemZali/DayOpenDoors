@@ -1,14 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DayOpenDoors"
              x:Class="DayOpenDoors.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    <MasterDetailPage.Master>
+        <ContentPage Title="Добро пожаловать!">
+            <ContentPage.Content>
+                <StackLayout Padding="0">
+                    <Button Text="План мероприятия" Clicked="Plan_Click"/>
+                    <Button Text="Чат" Clicked="Chat_Click"/>
+                    <Button Text="Столовая" Clicked="DR_Click"/>
+                    <Button Text="*" Clicked="Some_Click"/>
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Master>
 
-</ContentPage>
+</MasterDetailPage>

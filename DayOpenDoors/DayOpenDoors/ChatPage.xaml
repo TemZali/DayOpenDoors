@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DayOpenDoors.ChatPage"
+             Title="Чат">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="MessagesView"
+                      HasUnevenRows="True"
+                  ItemsSource="{Binding Messages}"
+                      SeparatorVisibility="None"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Frame CornerRadius="15" HorizontalOptions="{Binding Orientation}" Padding="0">
+                                    <StackLayout Spacing="0" Padding="0" HorizontalOptions="{Binding Orientation}" Margin="10" BackgroundColor="White">
+                                        <StackLayout Orientation="Horizontal" Spacing="5">
+                                            <Label Text="{Binding Userstatus}" TextColor="Orange" HorizontalOptions="{Binding Orientation}"/>
+                                            <Label Text="{Binding Username}" TextColor="Blue" HorizontalOptions="{Binding Orientation}"/>
+                                            <Label Text="{Binding Time}" HorizontalOptions="End" VerticalOptions="End" FontSize="Small"/>
+                                        </StackLayout>
+                                        <Label Text="{Binding Mess}" TextColor="Black" LineBreakMode="WordWrap" HorizontalOptions="{Binding Orientation}"/>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Orientation="Horizontal">
+                <Entry x:Name="TextEntry" Placeholder="Введите сообщение" VerticalOptions="End" HorizontalOptions="FillAndExpand" />
+                <Button Clicked="Click" Text="Отправить" BackgroundColor="Blue" TextColor="White" CornerRadius="10"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

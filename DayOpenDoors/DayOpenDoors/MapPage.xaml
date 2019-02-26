@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DayOpenDoors.MapPage"
+             Title="План здания">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+            <Button x:Name="FloorButton" Text="Выберите этаж" Clicked="ShowFloor"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

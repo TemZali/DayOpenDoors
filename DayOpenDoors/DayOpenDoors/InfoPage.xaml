@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DayOpenDoors.InfoPage"
+              Title="Добро пожаловать!">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView 
+            ItemsSource="{Binding EventList}"
+            HasUnevenRows="True"
+            ItemTapped="Info_Click">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Frame CornerRadius="10" Padding="0" Margin="0">
+                                    <StackLayout Orientation="Horizontal" Padding="5">
+                                        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand">
+                                            <Label Text="{Binding StartTime}" MaxLines="1"/>
+                                            <Label Text="{Binding EndTime}" VerticalOptions="EndAndExpand" MaxLines="1"/>
+                                        </StackLayout>
+                                        <BoxView BackgroundColor="{Binding EventColor}" WidthRequest="5" CornerRadius="10"/>
+                                        <StackLayout Padding="0">
+                                            <Label Text="{Binding Name}" LineBreakMode="WordWrap" TextColor="Blue"/>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <Label Text="{Binding Type}" TextColor="Orange" HorizontalOptions="StartAndExpand"/>
+                                                <Label Text="{Binding Status}" TextColor="{Binding EventColor}"  HorizontalOptions="EndAndExpand"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
