@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\DayOpenDoorsLibrary\DayOpenDoorsLibrary.csproj" />
+    <ProjectReference Include="..\..\FloorsLib\FloorsLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -19,7 +19,6 @@ namespace DayOpenDoors
             if (App.Current.Properties.TryGetValue("Id", out Id))
             {
                 Detail = new NavigationPage(new InfoPage(EventList));
-
             }
             else
             {
@@ -31,7 +30,7 @@ namespace DayOpenDoors
             };
             map.Clicked += (s, e) =>
             {
-                Detail = new NavigationPage(new MapPage(EventList));
+                Detail = new NavigationPage(new MapPage());
             };
             ToolbarItems.Add(map);
             ToolbarItem home = new ToolbarItem()
