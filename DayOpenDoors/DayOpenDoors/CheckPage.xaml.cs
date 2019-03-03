@@ -35,6 +35,8 @@ namespace DayOpenDoors
             InitializeComponent();
         }
 
+
+
         private async void CreateNew(object sender, EventArgs e)
         {
             ((Button)sender).Clicked -= CreateNew;

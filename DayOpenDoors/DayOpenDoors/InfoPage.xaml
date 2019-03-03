@@ -14,8 +14,8 @@
                         <ViewCell>
                             <ViewCell.View>
                                 <Frame CornerRadius="10" Padding="0" Margin="0">
-                                    <StackLayout Orientation="Horizontal" Padding="5">
-                                        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand">
+                                    <StackLayout Orientation="Horizontal" Padding="0">
+                                        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Start">
                                             <Label Text="{Binding StartTime}" MaxLines="1"/>
                                             <Label Text="{Binding EndTime}" VerticalOptions="EndAndExpand" MaxLines="1"/>
                                         </StackLayout>
@@ -24,7 +24,7 @@
                                             <Label Text="{Binding Name}" LineBreakMode="WordWrap" TextColor="Blue"/>
                                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                                 <Label Text="{Binding Type}" TextColor="Orange" HorizontalOptions="StartAndExpand"/>
-                                                <Label Text="{Binding Status}" TextColor="{Binding EventColor}"  HorizontalOptions="EndAndExpand"/>
+                                                <Label Text="{Binding Status}" TextColor="{Binding EventColor}" VerticalOptions="EndAndExpand"  HorizontalOptions="EndAndExpand"/>
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>

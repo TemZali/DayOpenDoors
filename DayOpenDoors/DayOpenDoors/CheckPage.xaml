@@ -4,7 +4,7 @@
              x:Class="DayOpenDoors.CheckPage"
              Title="Добро пожаловать!">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+        <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
             <Image Source="Trench.png" HeightRequest="200" WidthRequest="200"/>
             <Entry x:Name="NameEntry" Placeholder="Введите имя" HorizontalOptions="FillAndExpand"/>
             <Picker Title="Выберите ваш статус" x:Name="StatusPicker" HorizontalOptions="FillAndExpand">
@@ -13,7 +13,8 @@
                     <x:String>Родственник абитуриента</x:String>
                 </Picker.Items>
             </Picker>
-            <Button Text="Создать учетную запись" Clicked="CreateNew" BackgroundColor="Blue" TextColor="White"/>
+            <Button Text="Создать учетную запись" Clicked="CreateNew" BackgroundColor="White" TextColor="Blue"
+                    BorderColor="Blue" BorderRadius="10" BorderWidth="2"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

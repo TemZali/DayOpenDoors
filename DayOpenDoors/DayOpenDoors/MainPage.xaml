@@ -3,11 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DayOpenDoors"
              x:Class="DayOpenDoors.MainPage">
-
+    <MasterDetailPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="TextColor" Value="Blue"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="BorderRadius" Value="10"/>
+                <Setter Property="BorderColor" Value="Blue"/>
+                <Setter Property="BorderWidth" Value="2"/>
+            </Style>
+        </ResourceDictionary>
+    </MasterDetailPage.Resources>
     <MasterDetailPage.Master>
         <ContentPage Title="Добро пожаловать!">
             <ContentPage.Content>
-                <StackLayout Padding="0">
+                <StackLayout Spacing="5" BackgroundColor="Default">
                     <Button Text="План мероприятия" Clicked="Plan_Click"/>
                     <Button Text="Чат" Clicked="Chat_Click"/>
                     <Button Text="Столовая" Clicked="DR_Click"/>

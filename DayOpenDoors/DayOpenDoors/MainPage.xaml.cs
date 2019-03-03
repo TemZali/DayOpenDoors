@@ -45,6 +45,7 @@ namespace DayOpenDoors
 
         }
 
+
         private void Plan_Click(object sender, EventArgs e)
         {
             this.IsPresented = false;

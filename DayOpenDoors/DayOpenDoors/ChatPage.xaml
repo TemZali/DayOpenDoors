@@ -4,7 +4,7 @@
              x:Class="DayOpenDoors.ChatPage"
              Title="Чат">
     <ContentPage.Content>
-        <StackLayout x:Name="ChatLayout">
+        <StackLayout x:Name="ChatLayout" BackgroundColor="Default">
             <ListView x:Name="MessagesView"
                       HasUnevenRows="True"
                   ItemsSource="{Binding Messages}"
@@ -31,7 +31,7 @@
             </ListView>
             <StackLayout Orientation="Horizontal">
                 <Entry x:Name="TextEntry" Placeholder="Введите сообщение" VerticalOptions="End" HorizontalOptions="FillAndExpand" />
-                <Button Clicked="Click" Text="Отправить" BackgroundColor="Blue" TextColor="White" CornerRadius="10"/>
+                <Button Clicked="Click" Text="Отправить" BackgroundColor="White" TextColor="Blue" CornerRadius="10"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

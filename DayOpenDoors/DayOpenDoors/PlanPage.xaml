@@ -5,7 +5,9 @@
              Title="Мероприятия">
     <ContentPage.Content>
         <StackLayout>
-            <Button x:Name="TypeButton" Clicked="ShowEvents" Text="Выберите тип мероприятия"/>
+            <Button x:Name="TypeButton" Clicked="ShowEvents" 
+                    Text="Выберите тип мероприятия" BackgroundColor="White" TextColor="Blue"
+                    BorderRadius="10"/>
             <ListView x:Name="EventListView"
             HasUnevenRows="True"
             ItemTapped="Info_Click">
@@ -14,17 +16,17 @@
                         <ViewCell>
                             <ViewCell.View>
                                 <Frame CornerRadius="10" Padding="0" Margin="0">
-                                    <StackLayout Orientation="Horizontal" Padding="0">
-                                        <StackLayout VerticalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Horizontal" Padding="0" HorizontalOptions="FillAndExpand">
+                                        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Start">
                                             <Label Text="{Binding StartTime}"/>
                                             <Label Text="{Binding EndTime}" VerticalOptions="EndAndExpand"/>
                                         </StackLayout>
                                         <BoxView BackgroundColor="{Binding EventColor}" WidthRequest="5" CornerRadius="10"/>
-                                        <StackLayout Padding="0">
+                                        <StackLayout Padding="0" HorizontalOptions="FillAndExpand">
                                             <Label Text="{Binding Name}" LineBreakMode="WordWrap" TextColor="Blue"/>
                                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                                 <Label Text="{Binding Type}" TextColor="Orange" HorizontalOptions="StartAndExpand"/>
-                                                <Label Text="{Binding Status}" TextColor="{Binding EventColor}"  HorizontalOptions="EndAndExpand"/>
+                                                <Label Text="{Binding Status}" TextColor="{Binding EventColor}"  HorizontalOptions="End"/>
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
