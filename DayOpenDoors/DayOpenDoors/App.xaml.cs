@@ -10,8 +10,15 @@ namespace DayOpenDoors
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new CheckPage(this));
+            object zero;
+            if (App.Current.Properties.TryGetValue("User", out zero))
+            {
+                MainPage = new MainPage(this);
+            }
+            else
+            {
+                MainPage = new NavigationPage(new CheckPage(this));
+            }
         }
 
         protected override void OnStart()
