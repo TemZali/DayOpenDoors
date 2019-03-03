@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DayOpenDoors.AskOrCreatePage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+            <Image Source="Trench.png" HeightRequest="200" WidthRequest="200"/>
+            <Entry x:Name="NameEntry" HorizontalOptions="FillAndExpand" PlaceholderColor="Blue" HorizontalTextAlignment="Center"/>
+            <Entry x:Name="PasswordEntry" IsPassword="True" HorizontalOptions="FillAndExpand" PlaceholderColor="Blue" HorizontalTextAlignment="Center"/>
+            <Button x:Name="StatusButton" Text="Выберите статус" FontSize="Small" Clicked="ChooseStatus" BackgroundColor="White" TextColor="Blue"
+                    BorderColor="Blue" BorderRadius="10" BorderWidth="2" HorizontalOptions="FillAndExpand" />
+            <Button x:Name="AskOrCreateButton" BackgroundColor="White" TextColor="Blue"
+                    BorderColor="Blue" BorderRadius="10" BorderWidth="2" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

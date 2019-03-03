@@ -26,7 +26,7 @@ namespace DayOpenDoors
                     int CountOfMessages = Messages.Count;
                     for (int i = 0; i < list.Count; i++)
                     {
-                        if (list[i].UserId == App.Current.Properties["Id"].ToString())
+                        if (list[i].UserId == ThisUser.Id.ToString())
                         {
                             list[i].Orientation = LayoutOptions.End;
                         }
@@ -56,12 +56,15 @@ namespace DayOpenDoors
 
         public List<Message> list;
 
+        User ThisUser { get; set; }
+
         HttpClient client { get; set; }
 
         List<Message> Messages { get; set; }
 
         public ChatPage()
         {
+            ThisUser = (User)App.Current.Properties["User"];
             Messages = new List<Message>();
             client = new HttpClient();
             client.BaseAddress = new Uri("http://dodserver.azurewebsites.net:80");
@@ -76,8 +79,7 @@ namespace DayOpenDoors
 
         public async Task CheckUser()
         {
-            var uri = new Uri(string.Format($"http://dodserver.azurewebsites.net:80/api/user/{ App.Current.Properties["Id"].ToString()}", string.Empty));
-            string s = App.Current.Properties["Id"].ToString();
+            var uri = new Uri(string.Format($"http://dodserver.azurewebsites.net:80/api/user/{ThisUser.Id}", string.Empty));
             HttpResponseMessage answer = await client.GetAsync(uri);
             if (answer.ReasonPhrase == "Bad Request")
             {
@@ -159,10 +161,10 @@ namespace DayOpenDoors
                     await PushMessageAsync(new Message
                     {
                         Mess = TextEntry.Text,
-                        UserId = App.Current.Properties["Id"].ToString(),
-                        Username = App.Current.Properties["Name"].ToString(),
-                        Userstatus = App.Current.Properties["Status"].ToString(),
-                        Time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString()
+                        UserId =ThisUser.Id.ToString(),
+                        Username = ThisUser.Username,
+                        Userstatus =ThisUser.Userstatus,
+                        Time = DateTime.Now.Hour.ToString("00") + ":" + DateTime.Now.Minute.ToString("00")
                     });
                     TextEntry.Text = "";
                 }

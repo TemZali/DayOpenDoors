@@ -7,18 +7,21 @@ namespace DayOpenDoors
 {
     public partial class MainPage : MasterDetailPage
     {
-        new object Id;
+        App app;
+
         public List<Event> EventList { get; set; }
-        public MainPage()
+
+        public MainPage(App app)
         {
+            this.app = app;
             InitializeComponent();
             ToolbarItem map = new ToolbarItem()
             {
                 Text = "Карта"
             };
-            map.Clicked += (s, e) =>
+            map.Clicked += async (s, e) =>
             {
-                Navigation.PushAsync(new MapPage());
+                await Navigation.PushAsync(new MapPage());
             };
             ToolbarItems.Add(map);
             ToolbarItem home = new ToolbarItem()
@@ -34,15 +37,7 @@ namespace DayOpenDoors
             {
                 new Event{ Name="События с очень длинным именем, ну вы поняли",Time = new DateTime(2018,02,23,23,0,0),Status="Ожидается",Type="Лекция",Duration=60,EventColor=Color.White}
             };
-            if (App.Current.Properties.TryGetValue("Id", out Id))
-            {
-                Detail = new NavigationPage(new InfoPage(EventList, this, map, home));
-            }
-            else
-            {
-                Detail = new NavigationPage(new CheckPage(EventList, this, map, home));
-            }
-
+            Detail = new NavigationPage(new InfoPage(EventList, this, map, home));
         }
 
 
@@ -60,6 +55,20 @@ namespace DayOpenDoors
         {
             this.IsPresented = false;
             Detail = new NavigationPage(new DRPage());
+        }
+        private async void Exit(object sender, EventArgs e)
+        {
+            object zero;
+            this.IsPresented = false;
+            if (App.Current.Properties.TryGetValue("User",out zero))
+            {
+                App.Current.Properties.Remove("User");
+                app.MainPage = new NavigationPage(new CheckPage(app));
+            }
+            else
+            {
+                await DisplayAlert("Ошибка","Вы не авторизованы!","Ок");
+            }
         }
         private void Some_Click(object sender, EventArgs e)
         {

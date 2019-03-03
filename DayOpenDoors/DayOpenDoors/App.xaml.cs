@@ -11,7 +11,7 @@ namespace DayOpenDoors
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new CheckPage(this));
         }
 
         protected override void OnStart()

@@ -3,18 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DayOpenDoors.CheckPage"
              Title="Добро пожаловать!">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="TextColor" Value="Blue"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="BorderRadius" Value="10"/>
+                <Setter Property="BorderColor" Value="Blue"/>
+                <Setter Property="BorderWidth" Value="2"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-            <Image Source="Trench.png" HeightRequest="200" WidthRequest="200"/>
-            <Entry x:Name="NameEntry" Placeholder="Введите имя" HorizontalOptions="FillAndExpand"/>
-            <Picker Title="Выберите ваш статус" x:Name="StatusPicker" HorizontalOptions="FillAndExpand">
-                <Picker.Items>
-                    <x:String>Абитуриент</x:String>
-                    <x:String>Родственник абитуриента</x:String>
-                </Picker.Items>
-            </Picker>
-            <Button Text="Создать учетную запись" Clicked="CreateNew" BackgroundColor="White" TextColor="Blue"
-                    BorderColor="Blue" BorderRadius="10" BorderWidth="2"/>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Image Source="Check.png" HeightRequest="200" WidthRequest="200"/>
+            <Button Text="Зарегистрироваться" Clicked="Sign_up"/>
+            <Button Text="Авторизоваться" Clicked="Sign_in"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
