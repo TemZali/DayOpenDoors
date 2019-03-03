@@ -4,7 +4,7 @@
              x:Class="DayOpenDoors.ChatPage"
              Title="Чат">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout x:Name="ChatLayout">
             <ListView x:Name="MessagesView"
                       HasUnevenRows="True"
                   ItemsSource="{Binding Messages}"

@@ -12,25 +12,13 @@ namespace DayOpenDoors
         public MainPage()
         {
             InitializeComponent();
-            EventList = new List<Event>()
-            {
-                new Event{ Name="События с очень длинным именем, ну вы поняли",Time = new DateTime(2018,02,23,23,0,0),Status="Ожидается",Type="Лекция",Duration=60,EventColor=Color.White}
-            };
-            if (App.Current.Properties.TryGetValue("Id", out Id))
-            {
-                Detail = new NavigationPage(new InfoPage(EventList));
-            }
-            else
-            {
-                Detail = new NavigationPage(new CheckPage(EventList));
-            }
             ToolbarItem map = new ToolbarItem()
             {
                 Text = "Карта"
             };
             map.Clicked += (s, e) =>
             {
-                Detail = new NavigationPage(new MapPage());
+                Navigation.PushAsync(new MapPage());
             };
             ToolbarItems.Add(map);
             ToolbarItem home = new ToolbarItem()
@@ -39,9 +27,22 @@ namespace DayOpenDoors
             };
             home.Clicked += (s, e) =>
             {
-                Detail = new NavigationPage(new InfoPage(EventList));
+                Detail = new NavigationPage(new InfoPage(EventList, this, map, home));
             };
             ToolbarItems.Add(home);
+            EventList = new List<Event>()
+            {
+                new Event{ Name="События с очень длинным именем, ну вы поняли",Time = new DateTime(2018,02,23,23,0,0),Status="Ожидается",Type="Лекция",Duration=60,EventColor=Color.White}
+            };
+            if (App.Current.Properties.TryGetValue("Id", out Id))
+            {
+                Detail = new NavigationPage(new InfoPage(EventList, this, map, home));
+            }
+            else
+            {
+                Detail = new NavigationPage(new CheckPage(EventList, this, map, home));
+            }
+
         }
 
         private void Plan_Click(object sender, EventArgs e)

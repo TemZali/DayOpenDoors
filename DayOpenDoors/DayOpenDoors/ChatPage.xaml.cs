@@ -11,36 +11,44 @@ using DayOpenDoorsLibrary;
 namespace DayOpenDoors
 {
 
-	public partial class ChatPage : ContentPage
-	{
+    public partial class ChatPage : ContentPage
+    {
         private bool CheckCountOfMessages()
         {
-            var j = Task.Run(GetCountOfMessagesAsync);
-            j.Wait();
-            if (n > Messages.Count)
+            try
             {
-                var lst = Task.Run(RefreshDataAsync);
-                lst.Wait();
-                int CountOfMessages = Messages.Count;
-                for (int i = 0; i < list.Count; i++)
+                var j = Task.Run(GetCountOfMessagesAsync);
+                j.Wait();
+                if (n > Messages.Count)
                 {
-                    if (list[i].UserId == App.Current.Properties["Id"].ToString())
+                    var lst = Task.Run(RefreshDataAsync);
+                    lst.Wait();
+                    int CountOfMessages = Messages.Count;
+                    for (int i = 0; i < list.Count; i++)
                     {
-                        list[i].Orientation = LayoutOptions.End;
+                        if (list[i].UserId == App.Current.Properties["Id"].ToString())
+                        {
+                            list[i].Orientation = LayoutOptions.End;
+                        }
+                        else
+                        {
+                            list[i].Orientation = LayoutOptions.Start;
+                        }
+                        list[i].Userstatus = "[" + list[i].Userstatus + "]";
+                        Messages.Add(list[i]);
                     }
-                    else
-                    {
-                        list[i].Orientation = LayoutOptions.Start;
-                    }
-                    list[i].Userstatus = "[" + list[i].Userstatus + "]";
-                    Messages.Add(list[i]);
+                    MessagesView.ItemsSource = null;
+                    MessagesView.ItemsSource = Messages;
+                    MessagesView.BeginRefresh();
+                    MessagesView.EndRefresh();
                 }
-                MessagesView.ItemsSource = null;
-                MessagesView.ItemsSource = Messages;
-                MessagesView.BeginRefresh();
-                MessagesView.EndRefresh();
+                return true;
             }
-            return true;
+            catch
+            {
+                
+                return false;
+            }
         }
         public int n { get; set; }
 

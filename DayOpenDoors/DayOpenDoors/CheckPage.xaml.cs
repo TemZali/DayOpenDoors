@@ -10,14 +10,22 @@ using DayOpenDoorsLibrary;
 
 namespace DayOpenDoors
 {
-	public partial class CheckPage : ContentPage
-	{
+    public partial class CheckPage : ContentPage
+    {
         public List<Event> EventList { get; set; }
 
         HttpClient Client { get; set; }
 
-        public CheckPage(List<Event> events)
+        MainPage mainPage;
+        ToolbarItem map, home;
+
+        public CheckPage(List<Event> events, MainPage mainPage, ToolbarItem map, ToolbarItem home)
         {
+            this.mainPage = mainPage;
+            this.map = map;
+            this.home = home;
+            mainPage.ToolbarItems.Remove(map);
+            mainPage.ToolbarItems.Remove(home);
             Client = new HttpClient();
             Client.BaseAddress = new Uri("http://dodserver.azurewebsites.net:80");
             Client.DefaultRequestHeaders.Accept.Clear();
@@ -38,7 +46,10 @@ namespace DayOpenDoors
                     App.Current.Properties.Add("Id", newId);
                     App.Current.Properties.Add("Name", NameEntry.Text);
                     App.Current.Properties.Add("Status", StatusPicker.SelectedItem);
-                    await Navigation.PushAsync(new InfoPage(EventList));
+
+                    mainPage.ToolbarItems.Add(map);
+                    mainPage.ToolbarItems.Add(home);
+                    await Navigation.PushAsync(new InfoPage(EventList, mainPage, map, home));
                     Navigation.RemovePage(this);
                 }
                 else

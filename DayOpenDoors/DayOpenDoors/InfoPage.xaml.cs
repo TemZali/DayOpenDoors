@@ -6,13 +6,21 @@ using Xamarin.Forms.Xaml;
 
 namespace DayOpenDoors
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class InfoPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class InfoPage : ContentPage
     {
         public List<Event> EventList { get; set; }
 
-        public InfoPage(List<Event> events)
+        MainPage mainPage;
+
+        ToolbarItem map, home;
+
+        public InfoPage(List<Event> events, MainPage mainPage, ToolbarItem map, ToolbarItem home)
         {
+            this.mainPage = mainPage;
+            this.map = map;
+            this.home = home;
+            mainPage.ToolbarItems.Remove(home);
             InitializeComponent();
             EventList = events;
             Event.RefreshEventList(EventList);
@@ -21,6 +29,7 @@ namespace DayOpenDoors
 
         private async void Info_Click(object sender, EventArgs e)
         {
+            mainPage.ToolbarItems.Add(home);
             await Navigation.PushAsync(new EventPage((Event)((ItemTappedEventArgs)e).Item));
         }
     }

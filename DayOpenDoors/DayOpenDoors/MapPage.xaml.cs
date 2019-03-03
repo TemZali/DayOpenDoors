@@ -211,23 +211,19 @@ namespace DayOpenDoors
         }
 
 
-        /*
+        /*public void Update(List<Event> events)
+        {
+            DateTime time;
+            for (int i = 0; i < events.LongCount(); i++)
+            {
+                time = events.StartTime;
+                if (DateTime.Now > time)
+                    reservedRooms[events.Room] = true;
 
-public void Update(List<Event> events)
-{
-   DateTime time;
-   for (int i = 0; i < events.LongCount(); i++)
-   {
-       time = events.StartTime;
-       if (DateTime.Now > time)
-           reservedRooms[events.Room] = true;
-
-       time = events.EndTime;
-       if (DateTime.Now > time)
-           reservedRooms[events.Room] = false;
-   }
-}
-
-*/
+                time = events.EndTime;
+                if (DateTime.Now > time)
+                    reservedRooms[events.Room] = false;
+            }
+        }*/
     }
 }
