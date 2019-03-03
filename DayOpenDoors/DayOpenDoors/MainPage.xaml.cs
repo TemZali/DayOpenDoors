@@ -47,19 +47,22 @@ namespace DayOpenDoors
 
         private void Plan_Click(object sender, EventArgs e)
         {
+            this.IsPresented = false;
             Detail = new NavigationPage(new PlanPage(EventList));
         }
         private void Chat_Click(object sender, EventArgs e)
         {
+            this.IsPresented = false;
             Detail = new NavigationPage(new ChatPage());
         }
         private void DR_Click(object sender, EventArgs e)
         {
+            this.IsPresented = false;
             Detail = new NavigationPage(new DRPage());
         }
         private void Some_Click(object sender, EventArgs e)
         {
-
+            this.IsPresented = false;
         }
     }
 }

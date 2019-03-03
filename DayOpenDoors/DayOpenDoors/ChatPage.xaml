@@ -14,7 +14,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <Frame CornerRadius="15" HorizontalOptions="{Binding Orientation}" Padding="0">
+                                <Frame CornerRadius="15" HorizontalOptions="{Binding Orientation}" Padding="0" Margin="10">
                                     <StackLayout Spacing="0" Padding="0" HorizontalOptions="{Binding Orientation}" Margin="10" BackgroundColor="White">
                                         <StackLayout Orientation="Horizontal" Spacing="5">
                                             <Label Text="{Binding Userstatus}" TextColor="Orange" HorizontalOptions="{Binding Orientation}"/>

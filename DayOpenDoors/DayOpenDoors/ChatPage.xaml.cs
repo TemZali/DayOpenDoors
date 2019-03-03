@@ -46,7 +46,7 @@ namespace DayOpenDoors
             }
             catch
             {
-                
+                ChatLayout.Children.Add(new Label { Text = "Отсутствует подключение к сети, перезайдите на страницу" });
                 return false;
             }
         }
