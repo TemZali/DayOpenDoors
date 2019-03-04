@@ -5,7 +5,7 @@
               Title="Добро пожаловать!">
     <ContentPage.Content>
         <StackLayout>
-            <ListView 
+            <ListView x:Name="InfoList"
             ItemsSource="{Binding EventList}"
             HasUnevenRows="True"
             ItemTapped="Info_Click">

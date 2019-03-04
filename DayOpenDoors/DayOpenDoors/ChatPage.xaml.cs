@@ -156,7 +156,7 @@ namespace DayOpenDoors
         {
             if (IsUserExist)
             {
-                if (TextEntry.Text != "")
+                if (TextEntry.Text != null)
                 {
                     await PushMessageAsync(new Message
                     {
@@ -166,7 +166,7 @@ namespace DayOpenDoors
                         Userstatus =ThisUser.Userstatus,
                         Time = DateTime.Now.Hour.ToString("00") + ":" + DateTime.Now.Minute.ToString("00")
                     });
-                    TextEntry.Text = "";
+                    TextEntry.Text = null;
                 }
             }
             else

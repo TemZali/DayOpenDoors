@@ -29,9 +29,18 @@ namespace DayOpenDoors
            }
         };
 
-        public MapPage()
+        MainPage mainPage;
+        ToolbarItem map, home;
+
+
+        public MapPage(List<Event> events, MainPage mainPage,ToolbarItem map, ToolbarItem home)
         {
             InitializeComponent();
+            this.mainPage = mainPage;
+            this.map = map;
+            this.home = home;
+            mainPage.ToolbarItems.Add(home);
+            mainPage.ToolbarItems.Remove(map);
 
             image.Source = "Base.jpg";
             FlatGrid.IsVisible = false;

@@ -22,7 +22,8 @@ namespace DayOpenDoors
             Status = "";
             this.app = app;
             Client = new HttpClient();
-            Client.BaseAddress = new Uri("http://dodserver.azurewebsites.net");
+            //Client.BaseAddress = new Uri("https://dodserver.azurewebsites.net");
+            Client.BaseAddress = new Uri("http://dodserver.azurewebsites.net:80");
             Client.DefaultRequestHeaders.Accept.Clear();
             Client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
@@ -122,7 +123,8 @@ namespace DayOpenDoors
 
         async Task<string> PushUserAsync(User user)
         {
-            var uri = new Uri(string.Format($"http://dodserver.azurewebsites.net:80/api/user/", string.Empty));
+            //var uri = new Uri(string.Format($"https://dodserver.azurewebsites.net/api/user/", string.Empty));
+            var uri = new Uri("http://dodserver.azurewebsites.net:80/api/user/");
 
             var json = JsonConvert.SerializeObject(user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -132,7 +134,8 @@ namespace DayOpenDoors
 
         async Task<User> CheckUserAsync(string package)
         {
-            var uri = new Uri(string.Format($"http://dodserver.azurewebsites.net/api/user/{package}", string.Empty));
+            //var uri = new Uri(string.Format($"https://dodserver.azurewebsites.net/api/user/{package}", string.Empty));
+            var uri = new Uri($"http://dodserver.azurewebsites.net:80/api/user/{package}");
             var response = await Client.GetAsync(uri);
             if (response.IsSuccessStatusCode)
             {
