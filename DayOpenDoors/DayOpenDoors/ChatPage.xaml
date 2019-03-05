@@ -7,6 +7,7 @@
         <StackLayout x:Name="ChatLayout" BackgroundColor="Default">
             <ListView x:Name="MessagesView"
                       HasUnevenRows="True"
+                      IsEnabled="False"
                   ItemsSource="{Binding Messages}"
                       SeparatorVisibility="None"
                       >

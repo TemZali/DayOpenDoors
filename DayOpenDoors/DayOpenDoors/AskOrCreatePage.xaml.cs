@@ -50,68 +50,101 @@ namespace DayOpenDoors
         private async void CreateNew(object sender, EventArgs e)
         {
             ((Button)sender).Clicked -= CreateNew;
-            if ((Status!="") && NameEntry.Text != ""&&PasswordEntry.Text!="")
+            if (CheckPassword())
             {
-                try
+                if ((Status != "") && NameEntry.Text != "" && PasswordEntry.Text != "")
                 {
-                    string newId = await PushUserAsync(new User
+                    try
                     {
-                        Id = 1,
-                        Username = NameEntry.Text,
-                        Userpassword = GetMd5Hash(MD5.Create(),PasswordEntry.Text),
-                        Userstatus = Status
-                    });
-
-                    if (newId != "-1")
-                    {
-                        App.Current.Properties.Add("User", new User
+                        string newId = await PushUserAsync(new User
                         {
-                            Id = int.Parse(newId),
+                            Id = 1,
                             Username = NameEntry.Text,
-                            Userstatus = Status,
-                            Userpassword = PasswordEntry.Text
+                            Userpassword = GetMd5Hash(MD5.Create(), PasswordEntry.Text),
+                            Userstatus = Status
                         });
 
-                        app.MainPage = new MainPage(app);
+                        if (newId != "-1")
+                        {
+                            App.Current.Properties.Add("User", new User
+                            {
+                                Id = int.Parse(newId),
+                                Username = NameEntry.Text,
+                                Userstatus = Status,
+                                Userpassword = PasswordEntry.Text
+                            });
+
+                            app.MainPage = new MainPage(app);
+                        }
+                        else
+                        {
+                            await DisplayAlert("Ошибка", "Пользователь с таким именем уже существует", "Ok");
+                        }
                     }
-                    else
+                    catch
                     {
-                        await DisplayAlert("Ошибка", "Пользователь с таким именем уже существует", "Ok");
+                        await DisplayAlert("Ошибка!", "Отсутствует подключение к сети", "Ок");
                     }
                 }
-                catch
+                else
                 {
-                    await DisplayAlert("Ошибка!", "Отсутствует подключение к сети", "Ок");
+                    await DisplayAlert("Ошибка", "Заполните все поля", "Ок");
                 }
+           ((Button)sender).Clicked += CreateNew;
             }
             else
             {
-                await DisplayAlert("Ошибка", "Заполните все поля", "Ок");
+                await DisplayAlert("Ошибка","Пароль должен быть от 4 до 8 символов длиной, без пробелов","Ок");
             }
-           ((Button)sender).Clicked += CreateNew;
         }
 
         private async void CheckExist(object sender, EventArgs e)
         {
-            ((Button)sender).Clicked -= CheckExist;
-            try
+            if (NameEntry.Text.Length > 0 && PasswordEntry.Text.Length > 0)
             {
-                User instance = await CheckUserAsync(NameEntry.Text + " " + GetMd5Hash(MD5.Create(), PasswordEntry.Text));
-                if (instance == null)
+                ((Button)sender).Clicked -= CheckExist;
+                try
                 {
-                    await DisplayAlert("Ошибка", "Неверный логин или пароль", "Ок");
+                    User instance = await CheckUserAsync(NameEntry.Text + " " + GetMd5Hash(MD5.Create(), PasswordEntry.Text));
+                    if (instance == null)
+                    {
+                        await DisplayAlert("Ошибка", "Неверный логин или пароль", "Ок");
+                    }
+                    else
+                    {
+                        App.Current.Properties.Add("User", instance);
+                        app.MainPage = new MainPage(app);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    App.Current.Properties.Add("User", instance);
-                    app.MainPage = new MainPage(app);
+                    await DisplayAlert("Ошибка", "Отсутствует подключение к сети", "Ок");
                 }
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Ошибка", ex.Message, "Ок");
-            }
             ((Button)sender).Clicked += CheckExist;
+            }
+            else
+            {
+                await DisplayAlert("Ошибка","Вы не заполнили поля ввода","Ок");
+            }
+        }
+
+        private void CheckLength(object sender, EventArgs e)
+        {
+            string password = PasswordEntry.Text;
+            if (password.Length > 8)
+            {
+                password.Remove(password.Length - 1);
+                PasswordEntry.Text = password;
+            }
+        }
+
+        bool CheckPassword()
+        {
+            if (!PasswordEntry.Text.Contains(" ")&&PasswordEntry.Text.Length>4)
+            {
+                return true;
+            }
+            return false;
         }
 
         private async void ChooseStatus(object sender, EventArgs e)
