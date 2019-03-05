@@ -15,17 +15,33 @@ namespace DayOpenDoors.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            #region MapPage ScreenOrientation Subscribe
             //allowing the device to change the screen orientation based on the rotation
             MessagingCenter.Subscribe<MapPage>(this, "allowLandScapePortrait", sender =>
             {
                 RequestedOrientation = ScreenOrientation.Unspecified;
             });
 
-            //during page close setting back to portrait
+            //during page opened setting to landscape
             MessagingCenter.Subscribe<MapPage>(this, "preventPortrait", sender =>
             {
                 RequestedOrientation = ScreenOrientation.Landscape;
             });
+            #endregion
+
+            #region CheckPage and MainPage ScreenOrientation Subscribe
+            //allowing the device to change the screen orientation based on the rotation
+            MessagingCenter.Subscribe<MainPage>(this, "allowLandScapePortrait", sender =>
+            {
+                RequestedOrientation = ScreenOrientation.Unspecified;
+            });
+
+            //during page opened setting to portrait
+            MessagingCenter.Subscribe<CheckPage>(this, "preventLandscape", sender =>
+            {
+                RequestedOrientation = ScreenOrientation.Portrait;
+            });
+            #endregion
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;

@@ -13,8 +13,9 @@ namespace DayOpenDoors
     {
         Image image = new Image();
         Hashtable flatroomsButtons = new Hashtable();
-        Hashtable reservedRooms = new Hashtable();
+        Hashtable Rooms = new Hashtable();
         Floor floor;
+        List<Event> Events;
 
         private Style plainButton = new Style(typeof(Button))
         {
@@ -39,6 +40,8 @@ namespace DayOpenDoors
             this.mainPage = mainPage;
             this.map = map;
             this.home = home;
+            Events = events;
+
             mainPage.ToolbarItems.Add(home);
             mainPage.ToolbarItems.Remove(map);
 
@@ -157,18 +160,24 @@ namespace DayOpenDoors
                 }
                 else
                 {
-                    flatroomsButtons.Add(key, new Button { Text = key, Style = plainButton });
-                    reservedRooms.Add(key, false);
+                    flatroomsButtons.Add(key, new Button { Text = (key[0] == 'W') ? "WC" : key, Style = plainButton });
+                    ((Button)flatroomsButtons[key]).CornerRadius = 0;
+                    Rooms.Add(key, new Room(key));
 
                     //добавление анонимного обаботчика
                     ((Button)flatroomsButtons[key]).Clicked += (o, e) =>
                     {
-                        InfoLabel.Text = "Кабинет - " + key;
-                        reservedRooms[key] = (bool)reservedRooms[key] ? false : true;
-                        ((Button)flatroomsButtons[key]).BackgroundColor = (bool)reservedRooms[key] ? Color.Red : Color.FromHex("eee");
+                        Room room = ((Room)Rooms[key]);
 
-                        if ((bool)reservedRooms[key])
+                        InfoLabel.Text = room.ToString();
+                        room.IsBusy = room.IsBusy == 0 ? 2 : 0;
+                        room.ChangeColor();
+                        ((Button)flatroomsButtons[key]).BackgroundColor = Color.FromHex(room.Color);
+
+                        if (room.IsBusy == 0)
                         {
+                            EventLabel.Text = room.ToString() + ": " + Events[0].Name;
+
                             EventLabel.IsVisible = true;
                             EventButton.IsVisible = true;
                         }
@@ -208,15 +217,15 @@ namespace DayOpenDoors
         //смена цвета занятых кабинетов
         private void ChangeColor()
         {
-            foreach (string key in flatroomsButtons.Keys)
+            foreach (Room room in Rooms.Values)
             {
-                ((Button)flatroomsButtons[key]).BackgroundColor = (bool)reservedRooms[key] ? Color.Red : Color.FromHex("#eee");
+                ((Button)flatroomsButtons[room.Number]).BackgroundColor = Color.FromHex(room.Color);
             }
         }
 
-        private void EventButton_Clicked(object sender, EventArgs e)
+        private async void EventButton_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new EventPage(Events[0]));
         }
 
 

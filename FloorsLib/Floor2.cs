@@ -26,7 +26,7 @@ namespace FloorsLib
             //нечетная сторона
             lrooms.Add("216", "2131");
             lrooms.Add("217", "2141");
-            lrooms.Add("WC", "2151");
+            lrooms.Add("WC2", "2151");
             #endregion
 
             #region Средняя часть

@@ -20,6 +20,14 @@ namespace DayOpenDoors
             InitializeComponent();
         }
 
+        #region Изменение разрешений на поворот экрана
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MessagingCenter.Send(this, "preventLandscape");
+        }
+        #endregion
+
         private void Sign_in(object sender, EventArgs e)
         {
             Navigation.PushAsync(new AskOrCreatePage("sign_in", app));

@@ -12,6 +12,15 @@ namespace DayOpenDoors
 
         public List<Event> EventList { get; set; }
 
+
+        #region Изменение разрешений на поворот экрана
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MessagingCenter.Send(this, "allowLandScapePortrait");
+        }
+        #endregion
+
         public MainPage(App app)
         {
             this.app = app;

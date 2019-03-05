@@ -33,7 +33,7 @@ namespace FloorsLib
             lrooms.Add("513", "2112");
             lrooms.Add("511", "2131");
             lrooms.Add("WC1", "2141");
-            lrooms.Add("WC", "2151");
+            lrooms.Add("WC2", "2151");
             #endregion
 
             #region Средняя часть
