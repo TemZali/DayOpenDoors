@@ -22,7 +22,6 @@ namespace DayOpenDoors
             Setters = {
                 new Setter { Property = Button.BackgroundColorProperty, Value = Color.FromHex ("#eee") },
                 new Setter { Property = Button.TextColorProperty, Value = Color.Black },
-                new Setter { Property = Button.CornerRadiusProperty, Value = 0 },
                 new Setter { Property = Button.BorderColorProperty, Value = Color.Black },
                 new Setter { Property = Button.PaddingProperty, Value = "0, 0, 0, 0" },
                 new Setter { Property = Button.BorderWidthProperty, Value = 1 },

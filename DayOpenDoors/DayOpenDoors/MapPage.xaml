@@ -8,7 +8,6 @@
             <Style x:Key="simpleButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#eee"/>
                 <Setter Property="TextColor" Value="Black" />
-                <Setter Property="BorderRadius" Value="0"/>
                 <Setter Property="FontSize" Value="10" />
             </Style>
         </ResourceDictionary>
