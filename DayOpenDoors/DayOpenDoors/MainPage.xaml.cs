@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DayOpenDoorsLibrary;
 using Xamarin.Forms;
+using Plugin.Settings;
 
 namespace DayOpenDoors
 {
@@ -12,6 +13,7 @@ namespace DayOpenDoors
 
         public List<Event> EventList { get; set; }
 
+        public string[] ThisUser { get; set; }
 
         #region Изменение разрешений на поворот экрана
         protected override void OnAppearing()
@@ -23,8 +25,11 @@ namespace DayOpenDoors
 
         public MainPage(App app)
         {
+            ThisUser = CrossSettings.Current.GetValueOrDefault("User",null).Split(',');
             this.app = app;
             InitializeComponent();
+            NameLabel.Text = ThisUser[1];
+            StatusLabel.Text = ThisUser[2];
             map = new ToolbarItem()
             {
                 Text = "Карта"

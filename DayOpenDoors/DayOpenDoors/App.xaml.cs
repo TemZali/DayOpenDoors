@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Plugin.Settings;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace DayOpenDoors
@@ -10,8 +11,7 @@ namespace DayOpenDoors
         public App()
         {
             InitializeComponent();
-            object zero;
-            if (App.Current.Properties.TryGetValue("User", out zero))
+            if (CrossSettings.Current.GetValueOrDefault("User", null)!=null)
             {
                 MainPage = new MainPage(this);
             }

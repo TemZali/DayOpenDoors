@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Newtonsoft.Json;
 using DayOpenDoorsLibrary;
+using Plugin.Settings;
 
 namespace DayOpenDoors
 {
@@ -64,7 +65,8 @@ namespace DayOpenDoors
 
         public ChatPage()
         {
-            ThisUser = (User)App.Current.Properties["User"];
+            string[] userstr = CrossSettings.Current.GetValueOrDefault("User", null).Split(',');
+            ThisUser = new User() { Id = int.Parse(userstr[0]), Username = userstr[1], Userstatus = userstr[2] };
             Messages = new List<Message>();
             client = new HttpClient();
             client.BaseAddress = new Uri("http://dodserver.azurewebsites.net:80");

@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
 using DayOpenDoorsLibrary;
+using Plugin.Settings;
 
 namespace DayOpenDoors
 {
@@ -66,13 +67,8 @@ namespace DayOpenDoors
 
                         if (newId != "-1")
                         {
-                            App.Current.Properties.Add("User", new User
-                            {
-                                Id = int.Parse(newId),
-                                Username = NameEntry.Text,
-                                Userstatus = Status,
-                                Userpassword = PasswordEntry.Text
-                            });
+
+                            CrossSettings.Current.AddOrUpdateValue("User", $"{newId},{NameEntry.Text},{Status}");
 
                             app.MainPage = new MainPage(app);
                         }
@@ -112,7 +108,7 @@ namespace DayOpenDoors
                     }
                     else
                     {
-                        App.Current.Properties.Add("User", instance);
+                        CrossSettings.Current.AddOrUpdateValue("User", $"{instance.Id},{instance.Username},{instance.Userstatus}");
                         app.MainPage = new MainPage(app);
                     }
                 }
