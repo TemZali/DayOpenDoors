@@ -91,12 +91,11 @@ namespace DayOpenDoors
         }
         private async void Exit(object sender, EventArgs e)
         {
-            object zero;
             this.IsPresented = false;
-            if (App.Current.Properties.TryGetValue("User", out zero))
+            if (CrossSettings.Current.GetValueOrDefault("User",null)!=null)
             {
-                App.Current.Properties.Remove("User");
                 app.MainPage = new NavigationPage(new CheckPage(app));
+                CrossSettings.Current.Remove("User");
             }
             else
             {

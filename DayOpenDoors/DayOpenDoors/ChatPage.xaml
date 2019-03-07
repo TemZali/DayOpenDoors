@@ -5,31 +5,31 @@
              Title="Чат">
     <ContentPage.Content>
         <StackLayout x:Name="ChatLayout" BackgroundColor="Default">
-            <ListView x:Name="MessagesView"
+                <ListView x:Name="MessagesView"
                       HasUnevenRows="True"
-                      IsEnabled="False"
                   ItemsSource="{Binding Messages}"
                       SeparatorVisibility="None"
+                          ItemSelected="Select"
                       >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.View>
-                                <Frame CornerRadius="15" HorizontalOptions="{Binding Orientation}" Padding="0" Margin="10">
-                                    <StackLayout Spacing="0" Padding="0" HorizontalOptions="{Binding Orientation}" Margin="10" BackgroundColor="White">
-                                        <StackLayout Orientation="Horizontal" Spacing="5">
-                                            <Label Text="{Binding Userstatus}" TextColor="Orange" HorizontalOptions="{Binding Orientation}"/>
-                                            <Label Text="{Binding Username}" TextColor="Blue" HorizontalOptions="{Binding Orientation}"/>
-                                            <Label Text="{Binding Time}" HorizontalOptions="End" VerticalOptions="End" FontSize="Small"/>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Frame CornerRadius="15" HorizontalOptions="{Binding Orientation}" Padding="0" Margin="10">
+                                        <StackLayout Spacing="0" Padding="0" HorizontalOptions="{Binding Orientation}" Margin="10" BackgroundColor="White">
+                                            <StackLayout Orientation="Horizontal" Spacing="5">
+                                                <Label Text="{Binding Userstatus}" TextColor="Orange" HorizontalOptions="{Binding Orientation}"/>
+                                                <Label Text="{Binding Username}" TextColor="Blue" HorizontalOptions="{Binding Orientation}"/>
+                                                <Label Text="{Binding Time}" HorizontalOptions="End" VerticalOptions="End" FontSize="Small"/>
+                                            </StackLayout>
+                                            <Label Text="{Binding Mess}" TextColor="Black" LineBreakMode="WordWrap" HorizontalOptions="{Binding Orientation}"/>
                                         </StackLayout>
-                                        <Label Text="{Binding Mess}" TextColor="Black" LineBreakMode="WordWrap" HorizontalOptions="{Binding Orientation}"/>
-                                    </StackLayout>
-                                </Frame>
-                            </ViewCell.View>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                    </Frame>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             <StackLayout Orientation="Horizontal">
                 <Entry x:Name="TextEntry" Placeholder="Введите сообщение" VerticalOptions="End" HorizontalOptions="FillAndExpand" />
                 <Button Clicked="Click" Text="Отправить" BackgroundColor="White" TextColor="Blue" CornerRadius="10"/>

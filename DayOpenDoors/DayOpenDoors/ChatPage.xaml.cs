@@ -40,8 +40,10 @@ namespace DayOpenDoors
                     }
                     MessagesView.ItemsSource = null;
                     MessagesView.ItemsSource = Messages;
-                    MessagesView.BeginRefresh();
-                    MessagesView.EndRefresh();
+                    if (list.Count == Messages.Count)
+                    {
+                        MessagesView.ScrollTo(Messages[Messages.Count - 1], ScrollToPosition.End, true);
+                    }
                 }
                 return true;
             }
@@ -153,28 +155,32 @@ namespace DayOpenDoors
             }
         }
 
+        private void Select(object sender, EventArgs e)
+        {
+            MessagesView.SelectedItem = null;
+        }
 
         private async void Click(object sender, EventArgs e)
         {
             if (IsUserExist)
             {
-                if (TextEntry.Text != null)
+                if (TextEntry.Text != null&&TextEntry.Text.Trim().Length>0)
                 {
                     await PushMessageAsync(new Message
                     {
-                        Mess = TextEntry.Text,
-                        UserId =ThisUser.Id.ToString(),
+                        Mess = TextEntry.Text.Trim(),
+                        UserId = ThisUser.Id.ToString(),
                         Username = ThisUser.Username,
-                        Userstatus =ThisUser.Userstatus,
+                        Userstatus = ThisUser.Userstatus,
                         Time = DateTime.Now.Hour.ToString("00") + ":" + DateTime.Now.Minute.ToString("00")
                     });
-                    TextEntry.Text = null;
                 }
             }
             else
             {
                 await DisplayAlert("Ошибка", "Незарегистрированный пользователь не может использовать чат!", "Ок");
             }
+            TextEntry.Text = null;
 
         }
     }
