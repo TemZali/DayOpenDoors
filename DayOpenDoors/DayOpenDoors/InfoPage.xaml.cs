@@ -30,7 +30,7 @@ namespace DayOpenDoors
         private async void Info_Click(object sender, EventArgs e)
         {
             InfoList.SelectedItem = null;
-            await Navigation.PushAsync(new EventPage((Event)((ItemTappedEventArgs)e).Item));
+            //await Navigation.PushAsync(new EventPage((Event)((ItemTappedEventArgs)e).Item));
         }
     }
 }

@@ -54,7 +54,78 @@ namespace DayOpenDoors
             };
             EventList = new List<Event>()
             {
-                new Event{ Name="События с очень длинным именем, ну вы поняли",Time = new DateTime(2018,02,23,23,0,0),Status="Ожидается",Type="Лекция",Duration=60,EventColor=Color.White}
+                new Event{Name="О факультете",
+                    Time =new DateTime(2019,04,07,12,0,0), Status="Ожидается",Type="Лекция",Duration=30,EventColor=Color.Blue,Place="622"},
+
+                new Event{Name="Площадка для родителей",
+                    Time =new DateTime(2019,04,07,12,0,0), Status="Ожидается",Type="Лекция",Duration=30,
+                    EventColor =Color.Blue,Place="509",Info="Выступление представителей приемной комиссии и военной кафедры"},
+
+                new Event{Name="Speed-dating со студентами ФКН",
+                    Time =new DateTime(2019,04,07,12,0,0), Status="Ожидается",Type="Митап",Duration=240,
+                    EventColor =Color.Blue,Place="400"},
+
+                new Event{Name="О факультете",
+                    Time =new DateTime(2019,04,07,12,30,0), Status="Ожидается",Type="Лекция",Duration=30,EventColor=Color.Blue,Place="205"},
+
+                new Event{Name="Презентация программы \"Прикладная математика и информатика\"",
+                    Time =new DateTime(2019,04,07,12,30,0), Status="Ожидается",Type="Лекция",Duration=30,
+                    EventColor =Color.Blue,Place="622"},
+
+                new Event{Name="Лекция \"Как создать свою первую игру\"",
+                    Time =new DateTime(2019,04,07,12,30,0), Status="Ожидается",Type="Лекция",Duration=30,
+                    EventColor =Color.Blue,Place="317",SpeakerName="Веселко Никита, студент ПИ"},
+
+                new Event{Name="Презентация программы \"Прикладной анализ данных\"",
+                    Time =new DateTime(2019,04,07,13,0,0), Status="Ожидается",Type="Лекция",Duration=30,
+                    EventColor =Color.Blue,Place="205"},
+
+                new Event{Name="Площадка для родителей",
+                    Time =new DateTime(2019,04,07,13,0,0), Status="Ожидается",Type="Лекция",Duration=30,
+                    EventColor =Color.Blue,Place="317",Info="Выступление представителей приемной комиссии и военной кафедры"},
+
+                new Event{Name="Лекция \"Машинное обучение в Яндексе\"",
+                    Time =new DateTime(2019,04,07,13,30,0), Status="Ожидается",Type="Лекция",Duration=30,
+                    EventColor =Color.Blue,Place="509",SpeakerName="Александр Крайнов, Руководитель Лаборатории машинного интеллекта компании \"Яндекс\""},
+
+                new Event{Name="О факультете(формат вопрос-ответ)",
+                    Time =new DateTime(2019,04,07,13,30,0), Status="Ожидается",Type="Лекция",Duration=30,EventColor=Color.Blue,Place="509"},
+
+                new Event{Name="Презентация программы \"Программная инженерия\"",
+                    Time =new DateTime(2019,04,07,14,0,0), Status="Ожидается",Type="Лекция",Duration=60,
+                    EventColor =Color.Blue,Place="622"},
+
+                new Event{Name="О стажировках и практиках на ФКН",
+                    Time =new DateTime(2019,04,07,15,0,0), Status="Ожидается",Type="Лекция",Duration=60,
+                    EventColor =Color.Blue,Place="622",SpeakerName="Руководитель Центра практик и проектной работы Римма Ахметсафина"},
+
+                 new Event{Name="Студенты ПИ о своих проектах",
+                    Time =new DateTime(2019,04,07,15,0,0), Status="Ожидается",Type="Лекция",Duration=60,
+                    EventColor =Color.Blue,Place="622"},
+
+                  new Event{Name="О разработке игр",
+                    Time =new DateTime(2019,04,07,12,0,0), Status="Ожидается",Type="Мастер-класс",Duration=240,
+                    EventColor =Color.Blue,Place="412",SpeakerName="Веселко Никита, студент ПИ"},
+
+                  new Event{Name="Введение в reverse engineering. Анализ кода программы для начинающих",
+                    Time =new DateTime(2019,04,07,12,0,0), Status="Ожидается",Type="Мастер-класс",Duration=240,
+                    EventColor =Color.Blue,Place="416",SpeakerName="Московская школа программистов"},
+
+                  new Event{Name="Мастер-класс по языку Python",
+                    Time =new DateTime(2019,04,07,12,0,0), Status="Ожидается",Type="Мастер-класс",Duration=240,
+                    EventColor =Color.Blue,Place="420"},
+
+                  new Event{Name="Решение олимпиадных задач по информатике",
+                    Time =new DateTime(2019,04,07,12,0,0), Status="Ожидается",Type="Мастер-класс",Duration=240,
+                    EventColor =Color.Blue,Place="503",SpeakerName="Центр студенческих олимпиад ФКН НИУ ВШЭ"},
+
+                  new Event{Name="Мастер-класс по языку C++",
+                    Time =new DateTime(2019,04,07,12,0,0), Status="Ожидается",Type="Мастер-класс",Duration=240,
+                    EventColor =Color.Blue,Place="501"},
+
+                  new Event{Name="Мастер-класс по языку Python \"для продвинутых\"",
+                    Time =new DateTime(2019,04,07,12,0,0), Status="Ожидается",Type="Мастер-класс",Duration=240,
+                    EventColor =Color.Blue,Place="605"},
             };
             Detail = new NavigationPage(new InfoPage(EventList, this, map, home));
         }

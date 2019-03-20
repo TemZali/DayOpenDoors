@@ -49,7 +49,8 @@ namespace DayOpenDoors
 
         private async void Info_Click(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new EventPage((Event)((ItemTappedEventArgs)e).Item));
+            EventListView.SelectedItem = null;
+            //await Navigation.PushAsync(new EventPage((Event)((ItemTappedEventArgs)e).Item));
         }
     }
 }
