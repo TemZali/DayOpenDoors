@@ -8,6 +8,8 @@ namespace FloorsLib
 {
     public class Room
     {
+        public int EventIndex { get; set; }
+
         public string Number { get; set; }
 
         /// <summary>
@@ -22,6 +24,7 @@ namespace FloorsLib
         {
             Number = number;
             IsBusy = 0;
+            EventIndex = -1;
 
             if (Number == "WC1" || Number == "WC2")
                 Color = Number[2] == '1' ? "#ff66ff" : "#42aaff"; //Розовый(женский) : Голубой(мужской)

@@ -14,8 +14,10 @@ namespace DayOpenDoors
         Image image = new Image();
         Hashtable flatroomsButtons = new Hashtable();
         Hashtable Rooms = new Hashtable();
+        DateTime time;
         Floor floor;
         List<Event> Events;
+        bool first;
 
         private Style plainButton = new Style(typeof(Button))
         {
@@ -40,6 +42,8 @@ namespace DayOpenDoors
             this.map = map;
             this.home = home;
             Events = events;
+            time = DateTime.Now;
+            first = true;
 
             mainPage.ToolbarItems.Add(home);
             mainPage.ToolbarItems.Remove(map);
@@ -188,7 +192,10 @@ namespace DayOpenDoors
                     };
                 }
 
-                ChangeColor();
+                if (first || DateTime.Now - time > new TimeSpan(0, 1, 0))
+                    time = DateTime.Now;
+                    Update();
+                    ChangeColor();
 
                 string val = part[key].ToString();
 
@@ -228,19 +235,39 @@ namespace DayOpenDoors
         }
 
 
-        /*public void Update(List<Event> events)
+        public void Update()
         {
-            DateTime time;
-            for (int i = 0; i < events.LongCount(); i++)
+            Event.RefreshEventList(Events);
+            foreach (Event @event in Events)
             {
-                time = events.StartTime;
-                if (DateTime.Now > time)
-                    reservedRooms[events.Room] = true;
-
-                time = events.EndTime;
-                if (DateTime.Now > time)
-                    reservedRooms[events.Room] = false;
+                if (Rooms.Contains(@event.Place))
+                    ((Room)Rooms[@event.Place]).EventIndex = Events.IndexOf(@event);
             }
-        }*/
+
+            foreach (Room room in Rooms.Values)
+            {
+                if (room.EventIndex == -1)
+                {
+                    room.IsBusy = 0;
+                    room.ChangeColor();
+                    continue;
+                }
+
+                switch (Events[room.EventIndex].Status)
+                {
+                    case "Скоро начнется":
+                        room.IsBusy = 1;
+                        break;
+                    case "Уже идет":
+                        room.IsBusy = 2;
+                        break;
+                    default:
+                        room.IsBusy = 0;
+                        room.EventIndex = -1;
+                        break;
+                }
+                room.ChangeColor();
+            }
+        }
     }
 }
