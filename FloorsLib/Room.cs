@@ -38,7 +38,7 @@ namespace FloorsLib
                 switch (IsBusy)
                 {
                     case 1:
-                        Color = "#ffff00"; //желтый
+                        Color = "#ffa500"; //желтый
                         return;
                     case 2:
                         Color = "#ff0000"; //красный

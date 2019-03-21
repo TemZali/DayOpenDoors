@@ -18,6 +18,7 @@ namespace DayOpenDoors
         Floor floor;
         List<Event> Events;
         bool first;
+        int currentIndex = -1;
 
         private Style plainButton = new Style(typeof(Button))
         {
@@ -173,13 +174,13 @@ namespace DayOpenDoors
                         Room room = ((Room)Rooms[key]);
 
                         InfoLabel.Text = room.ToString();
-                        room.IsBusy = room.IsBusy == 0 ? 2 : 0;
-                        room.ChangeColor();
                         ((Button)flatroomsButtons[key]).BackgroundColor = Color.FromHex(room.Color);
 
-                        if (room.IsBusy == 0)
+                        if (room.IsBusy != 0)
                         {
-                            EventLabel.Text = room.ToString() + ": " + Events[0].Name;
+                            currentIndex = room.EventIndex == -1? 0: room.EventIndex;
+
+                            EventLabel.Text = room.ToString() + ": " + Events[currentIndex].Name;
 
                             EventLabel.IsVisible = true;
                             EventButton.IsVisible = true;
@@ -193,9 +194,11 @@ namespace DayOpenDoors
                 }
 
                 if (first || DateTime.Now - time > new TimeSpan(0, 1, 0))
+                {
                     time = DateTime.Now;
                     Update();
                     ChangeColor();
+                }
 
                 string val = part[key].ToString();
 
@@ -231,9 +234,8 @@ namespace DayOpenDoors
 
         private async void EventButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new EventPage(Events[0]));
+            await DisplayAlert(Events[currentIndex].Type, Events[currentIndex].Info, "Ок");
         }
-
 
         public void Update()
         {
@@ -241,7 +243,11 @@ namespace DayOpenDoors
             foreach (Event @event in Events)
             {
                 if (Rooms.Contains(@event.Place))
-                    ((Room)Rooms[@event.Place]).EventIndex = Events.IndexOf(@event);
+                {
+                    Room room = (Room)Rooms[@event.Place];
+                    if (room.EventIndex == -1 || !(Events[room.EventIndex].Status == "Скоро начнется" || Events[room.EventIndex].Status == "Уже идет"))
+                        room.EventIndex = Events.IndexOf(@event);
+                }
             }
 
             foreach (Room room in Rooms.Values)
@@ -252,7 +258,7 @@ namespace DayOpenDoors
                     room.ChangeColor();
                     continue;
                 }
-
+                
                 switch (Events[room.EventIndex].Status)
                 {
                     case "Скоро начнется":
