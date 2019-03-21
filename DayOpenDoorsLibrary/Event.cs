@@ -47,23 +47,20 @@ namespace DayOpenDoorsLibrary
                         EventList[i].EventColor = Color.Orange;
                     }
                 }
+                else if (DateTime.Now - EventList[i].Time < new TimeSpan(0, EventList[i].Duration, 0))
+                {
+                    EventList[i].Status = "Уже идет";
+                    EventList[i].EventColor = Color.Red;
+                }
                 else
                 {
-                    if (DateTime.Now - EventList[i].Time < new TimeSpan(0, EventList[i].Duration, 0))
+                    if (EventList[i].EventColor != Color.Gray)
                     {
-                        EventList[i].Status = "Уже идет";
-                        EventList[i].EventColor = Color.Red;
-                    }
-                    else
-                    {
-                        if (EventList[i].EventColor != Color.Gray)
-                        {
-                            EventList[i].Status = "Прошло";
-                            EventList[i].EventColor = Color.Gray;
-                            Event ev = EventList[i];
-                            EventList.RemoveAt(i--);
-                            EventList.Add(ev);
-                        }
+                        EventList[i].Status = "Прошло";
+                        EventList[i].EventColor = Color.Gray;
+                        Event ev = EventList[i];
+                        EventList.RemoveAt(i--);
+                        EventList.Add(ev);
                     }
                 }
             }

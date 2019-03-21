@@ -29,8 +29,9 @@ namespace DayOpenDoors
 
         private async void Info_Click(object sender, EventArgs e)
         {
+            Event selected = (Event)InfoList.SelectedItem;
             InfoList.SelectedItem = null;
-            //await Navigation.PushAsync(new EventPage((Event)((ItemTappedEventArgs)e).Item));
+            await DisplayAlert($"{selected.Name}",$"{selected.Info}\nАудитория {selected.Place}\n{selected.SpeakerName}","Ок");
         }
     }
 }

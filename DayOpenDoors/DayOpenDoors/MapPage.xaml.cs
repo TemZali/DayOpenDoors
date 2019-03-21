@@ -36,7 +36,7 @@ namespace DayOpenDoors
         ToolbarItem map, home;
 
 
-        public MapPage(List<Event> events, MainPage mainPage,ToolbarItem map, ToolbarItem home)
+        public MapPage(List<Event> events, MainPage mainPage, ToolbarItem map, ToolbarItem home)
         {
             InitializeComponent();
             this.mainPage = mainPage;
@@ -45,8 +45,10 @@ namespace DayOpenDoors
             Events = events;
             time = DateTime.Now;
             first = true;
-
-            mainPage.ToolbarItems.Add(home);
+            if (!mainPage.ToolbarItems.Contains(home))
+            {
+                mainPage.ToolbarItems.Add(home);
+            }
             mainPage.ToolbarItems.Remove(map);
 
             image.Source = "Base.jpg";
@@ -89,6 +91,11 @@ namespace DayOpenDoors
         {
             base.OnDisappearing();
             MessagingCenter.Send(this, "allowLandScapePortrait");
+            mainPage.ToolbarItems.Remove(home);
+            if (!mainPage.ToolbarItems.Contains(map))
+            {
+                mainPage.ToolbarItems.Add(map);
+            }
         }
         #endregion
 
@@ -178,7 +185,7 @@ namespace DayOpenDoors
 
                         if (room.IsBusy != 0)
                         {
-                            currentIndex = room.EventIndex == -1? 0: room.EventIndex;
+                            currentIndex = room.EventIndex == -1 ? 0 : room.EventIndex;
 
                             EventLabel.Text = room.ToString() + ": " + Events[currentIndex].Name;
 
@@ -234,7 +241,9 @@ namespace DayOpenDoors
 
         private async void EventButton_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert(Events[currentIndex].Type, Events[currentIndex].Info, "Ок");
+            await DisplayAlert($"{Events[currentIndex].Name}", $"{Events[currentIndex].Info}" +
+                $"\nАудитория {Events[currentIndex].Place}" +
+                $"\n{Events[currentIndex].SpeakerName}", "Ок");
         }
 
         public void Update()
@@ -258,7 +267,7 @@ namespace DayOpenDoors
                     room.ChangeColor();
                     continue;
                 }
-                
+
                 switch (Events[room.EventIndex].Status)
                 {
                     case "Скоро начнется":

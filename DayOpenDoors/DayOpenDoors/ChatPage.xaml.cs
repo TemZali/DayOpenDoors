@@ -155,8 +155,24 @@ namespace DayOpenDoors
             }
         }
 
-        private void Select(object sender, EventArgs e)
+        private async void Select(object sender, EventArgs e)
         {
+            if (ThisUser.Userstatus == "Админ")
+            {
+                if(await DisplayAlert("Сообщение", "Хотите удалить сообщение?", "Да", "Нет"))
+                {
+                    Message mess = (Message)MessagesView.SelectedItem;
+                    var uri = new Uri(string.Format($"http://dodserver.azurewebsites.net:80/api/message/{mess.Id}", string.Empty));
+                    try
+                    {
+                        await client.DeleteAsync(uri);
+                    }
+                    catch
+                    {
+                        await DisplayAlert("Ошибка!", "Отсутствует подключение к сети", "Ок");
+                    }
+                }
+            }
             MessagesView.SelectedItem = null;
         }
 

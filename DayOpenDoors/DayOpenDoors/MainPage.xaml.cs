@@ -25,7 +25,7 @@ namespace DayOpenDoors
 
         public MainPage(App app)
         {
-            ThisUser = CrossSettings.Current.GetValueOrDefault("User",null).Split(',');
+            ThisUser = CrossSettings.Current.GetValueOrDefault("User", null).Split(',');
             this.app = app;
             InitializeComponent();
             NameLabel.Text = ThisUser[1];
@@ -103,6 +103,10 @@ namespace DayOpenDoors
                     Time =new DateTime(2019,04,07,15,0,0), Status="Ожидается",Type="Лекция",Duration=60,
                     EventColor =Color.Blue,Place="622"},
 
+                 new Event{Name="Столовая",Time =new DateTime(2019,04,07,15,0,0),
+                 Status="Ожидается",Duration=120,Info="Приятного аппетита!",
+                    EventColor =Color.Blue,Place="Столовая",Type="Перекус"},
+
                   new Event{Name="О разработке игр",
                     Time =new DateTime(2019,04,07,12,0,0), Status="Ожидается",Type="Мастер-класс",Duration=240,
                     EventColor =Color.Blue,Place="412",SpeakerName="Веселко Никита, студент ПИ"},
@@ -154,16 +158,10 @@ namespace DayOpenDoors
             this.IsPresented = false;
             Detail = new NavigationPage(new ChatPage());
         }
-        private void DR_Click(object sender, EventArgs e)
-        {
-            CheckToolBar();
-            this.IsPresented = false;
-            Detail = new NavigationPage(new DRPage());
-        }
         private async void Exit(object sender, EventArgs e)
         {
             this.IsPresented = false;
-            if (CrossSettings.Current.GetValueOrDefault("User",null)!=null)
+            if (CrossSettings.Current.GetValueOrDefault("User", null) != null)
             {
                 app.MainPage = new NavigationPage(new CheckPage(app));
                 CrossSettings.Current.Remove("User");
@@ -173,9 +171,10 @@ namespace DayOpenDoors
                 await DisplayAlert("Ошибка", "Вы не авторизованы!", "Ок");
             }
         }
-        private void Some_Click(object sender, EventArgs e)
+        private void Way_Click(object sender, EventArgs e)
         {
             CheckToolBar();
+            Detail = new NavigationPage(new WayPage());
             this.IsPresented = false;
         }
     }

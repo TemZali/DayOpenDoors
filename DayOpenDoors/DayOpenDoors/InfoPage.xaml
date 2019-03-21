@@ -22,10 +22,9 @@
                                         <BoxView BackgroundColor="{Binding EventColor}" WidthRequest="5" CornerRadius="10"/>
                                         <StackLayout HorizontalOptions="FillAndExpand">
                                             <Label Text="{Binding Name}" TextColor="Blue" MaxLines="3"/>
-                                            <Label Text="{Binding Info}" LineBreakMode="WordWrap"/>
-                                            <Label Text="{Binding SpeakerName}" HorizontalOptions="End"/>
                                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-                                                <Label Text="{Binding Type}" TextColor="Orange" HorizontalOptions="StartAndExpand"/>
+                                                <Label Text="{Binding Type}" TextColor="Orange" HorizontalOptions="Start"/>
+                                                <Label Text="{Binding Place}" HorizontalOptions="CenterAndExpand"/>
                                                 <Label Text="{Binding Status}" TextColor="{Binding EventColor}"  HorizontalOptions="End"/>
                                             </StackLayout>
                                         </StackLayout>
