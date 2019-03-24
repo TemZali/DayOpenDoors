@@ -188,14 +188,18 @@ namespace DayOpenDoors
                             currentIndex = room.EventIndex == -1 ? 0 : room.EventIndex;
 
                             EventLabel.Text = room.ToString() + ": " + Events[currentIndex].Name;
+                            StartTime.Text = "Время начала\n" + Events[currentIndex].Time.ToShortTimeString();
+                            EndTime.Text = "Время окончания\n" + (Events[currentIndex].Time + new TimeSpan(0, Events[currentIndex].Duration, 0)).ToShortTimeString();
 
                             EventLabel.IsVisible = true;
-                            EventButton.IsVisible = true;
+                            InfoGrid.IsVisible = true;
+                            //EventButton.IsVisible = true;
                         }
                         else
                         {
                             EventLabel.IsVisible = false;
-                            EventButton.IsVisible = false;
+                            InfoGrid.IsVisible = false;
+                            //EventButton.IsVisible = false;
                         }
                     };
                 }
