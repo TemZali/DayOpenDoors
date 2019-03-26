@@ -34,6 +34,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button BackgroundColor="White" Text="Обновить список" TextColor="Blue"
+                    BorderColor="Blue" BorderRadius="10" HorizontalOptions="Center"
+                    VerticalOptions="Center" Clicked="GetEvents" x:Name="GetButton"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

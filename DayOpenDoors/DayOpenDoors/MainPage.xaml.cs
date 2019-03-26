@@ -42,7 +42,8 @@ namespace DayOpenDoors
                 add = new ToolbarItem()
                 {
                     Text = "Добавить",
-                    Priority=2
+                    Order = ToolbarItemOrder.Secondary,
+                    Priority = 2
                 };
                 add.Clicked += async (s, e) =>
                  {
@@ -53,8 +54,8 @@ namespace DayOpenDoors
             map = new ToolbarItem()
             {
                 Text = "Карта",
-                Priority=1
-                
+                Priority = 1
+
             };
             map.Clicked += async (s, e) =>
             {
@@ -64,7 +65,7 @@ namespace DayOpenDoors
             home = new ToolbarItem()
             {
                 Text = "Домой",
-                Priority=3
+                Priority = 3
             };
             home.Clicked += (s, e) =>
             {
@@ -73,7 +74,7 @@ namespace DayOpenDoors
                     ToolbarItems.Add(map);
                 }
                 ToolbarItems.Remove(home);
-                Detail = new NavigationPage(new InfoPage(EventList, this, map, home,add,IsAdmin));
+                Detail = new NavigationPage(new InfoPage(EventList, this, map, home, add, IsAdmin));
             };
             Detail = new NavigationPage(new InfoPage(EventList, this, map, home, add, IsAdmin));
             /* EventList = new List<Event>()
@@ -155,15 +156,6 @@ namespace DayOpenDoors
                      Time =new DateTime(2019,04,07,12,0,0), Status="Ожидается",Type="Мастер-класс",Duration=240,
                      EventColor =Color.Blue,Place="605"},
              };*/
-        }
-
-        async void GetEvents()
-        {
-            HttpClient client = new HttpClient();
-            Uri uri = new Uri("http://dodserver.azurewebsites.net/api/event/");
-            var response = await client.GetAsync(uri);
-            var content = await response.Content.ReadAsStringAsync();
-            EventList = JsonConvert.DeserializeObject<List<Event>>(content);
         }
 
         void CheckToolBar()

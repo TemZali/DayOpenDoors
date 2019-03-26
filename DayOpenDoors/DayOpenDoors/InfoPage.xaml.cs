@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using DayOpenDoorsLibrary;
 using Xamarin.Forms;
 using System.Net.Http;
+using Newtonsoft.Json;
 using Xamarin.Forms.Xaml;
 
 namespace DayOpenDoors
@@ -15,7 +16,7 @@ namespace DayOpenDoors
 
         MainPage mainPage;
 
-        ToolbarItem map, home,add;
+        ToolbarItem map, home,add,refresh;
 
         public InfoPage(List<Event> events, MainPage mainPage, ToolbarItem map, ToolbarItem home,ToolbarItem add, bool isAdmin)
         {
@@ -27,6 +28,7 @@ namespace DayOpenDoors
             EventList = events;
             Event.RefreshEventList(EventList);
             InitializeComponent();
+            InfoList.IsVisible = false;
             if (isAdmin)
             {
                 InfoList.ItemTapped += Change;
@@ -36,6 +38,15 @@ namespace DayOpenDoors
                 InfoList.ItemTapped += Display;
             }
             this.BindingContext = this;
+            refresh = new ToolbarItem()
+            {
+                Text = "Обновить список",
+                Order = ToolbarItemOrder.Secondary
+            };
+            refresh.Clicked += (s, e) =>
+            {
+                GetEvents(this, new EventArgs());
+            };
         }
 
         private async void Change(object sender, EventArgs e)
@@ -62,6 +73,7 @@ namespace DayOpenDoors
         {
             base.OnDisappearing();
             ToolbarItems.Remove(add);
+            ToolbarItems.Remove(refresh);
         }
 
         protected override void OnAppearing()
@@ -71,6 +83,25 @@ namespace DayOpenDoors
             {
                 ToolbarItems.Add(add);
             }
+            if (!ToolbarItems.Contains(refresh))
+            {
+                ToolbarItems.Add(refresh);
+            }
+        }
+
+        private async void GetEvents(object sender,EventArgs e)
+        {
+            GetButton.IsVisible = false;
+            HttpClient client = new HttpClient();
+            Uri uri = new Uri("http://dodserver.azurewebsites.net/api/event/");
+            var response = await client.GetAsync(uri);
+            var content = await response.Content.ReadAsStringAsync();
+            EventList = JsonConvert.DeserializeObject<List<Event>>(content);
+            mainPage.EventList = EventList;
+            Event.RefreshEventList(EventList);
+            InfoList.ItemsSource = null;
+            InfoList.ItemsSource = EventList;
+            InfoList.IsVisible = true;
         }
 
         private async void Display(object sender, EventArgs e)
