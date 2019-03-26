@@ -74,8 +74,30 @@
                 <Label x:Name="EventLabel" IsVisible="False" Text="Название события" 
                        HorizontalOptions="CenterAndExpand"/>
 
-                <Button x:Name="EventButton" IsVisible="False" Text="Жмакнуть, чтобы перейти" 
+                <Grid x:Name="InfoGrid" ColumnSpacing="0" RowSpacing="0" IsVisible="False" VerticalOptions="EndAndExpand" Padding="10, 0, 10, 2">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="EventButton" Grid.Row="0" Grid.Column="1" 
+                        IsVisible="True" Text="О событии" 
                         Clicked="EventButton_Clicked" HorizontalOptions="CenterAndExpand"/>
+
+                    <Label x:Name="StartTime" Grid.Row="0" Grid.Column="0" IsVisible="True" Text="Время начала" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="CenterAndExpand"/>
+
+                    <Label x:Name="EndTime" Grid.Row="0" Grid.Column="2" IsVisible="True" Text="Время окончания" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="CenterAndExpand"/>
+                </Grid>
 
             </StackLayout>
 
