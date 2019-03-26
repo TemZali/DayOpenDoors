@@ -7,8 +7,7 @@
         <StackLayout>
             <ListView x:Name="InfoList"
             ItemsSource="{Binding EventList}"
-            HasUnevenRows="True"
-            ItemTapped="Info_Click">
+            HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

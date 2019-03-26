@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DayOpenDoors.CreateOrUpdatePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Название" x:Name="NameEntry" />
+            <Entry Placeholder="Имя спикера/организации" x:Name="SpeakerEntry"/>
+            <StackLayout Orientation="Horizontal">
+                <Entry Placeholder="Месяц" x:Name="MonthEntry" Keyboard="Numeric"/>
+                <Entry Placeholder="День" x:Name="DayEntry" Keyboard="Numeric"/>
+                <Entry Placeholder="Часы" x:Name="HourEntry" Keyboard="Numeric"/>
+                <Entry Placeholder="Минуты" x:Name="MinuteEntry" Keyboard="Numeric"/>
+            </StackLayout>
+            <Entry Placeholder="Продолжительность(в минутах)" x:Name="DurationEntry" Keyboard="Numeric"/>
+            <Entry Placeholder="Тип мероприятия" x:Name="TypeEntry" />
+            <Entry Placeholder="Место проведения" x:Name="PlaceEntry" />
+            <Editor Placeholder="Информация" x:Name="InfoEditor" VerticalOptions="FillAndExpand"/>
+            <Button x:Name="ChangeButton" BackgroundColor="White" TextColor="Blue" BorderColor="Blue" BorderRadius="10" HorizontalOptions="Center"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

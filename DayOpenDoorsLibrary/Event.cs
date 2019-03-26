@@ -6,6 +6,21 @@ namespace DayOpenDoorsLibrary
 {
     public class Event
     {
+        public Event(string place, int duration, DateTime time, string name, string type, string speakerName, string info)
+        {
+            Id = 0;
+            Place = place;
+            Duration = duration;
+            Time = time;
+            StartTime = "";
+            EndTime = "";
+            Name = name;
+            Type = type;
+            Status = "Ожидается";
+            SpeakerName = speakerName;
+            Info = info;
+            EventColor = Color.Blue;
+        }
         public int Id { get; set; }
 
         public string Place { get; set; }
@@ -23,8 +38,6 @@ namespace DayOpenDoorsLibrary
         public string Type { get; set; }
 
         public string Status { get; set; }
-
-        public byte[] SpeakerImage { get; set; }
 
         public string SpeakerName { get; set; }
 
@@ -59,10 +72,35 @@ namespace DayOpenDoorsLibrary
                         EventList[i].Status = "Прошло";
                         EventList[i].EventColor = Color.Gray;
                         Event ev = EventList[i];
-                        EventList.RemoveAt(i--);
-                        EventList.Add(ev);
                     }
                 }
+                EventList.Sort((Event a, Event b) =>
+                {
+                    if (a.Time < b.Time)
+                    {
+                        if (b.EventColor == Color.Red && a.EventColor == Color.Orange
+                        || b.EventColor == Color.Orange && a.EventColor == Color.Blue
+                        || b.EventColor == Color.Blue && a.EventColor == Color.Gray)
+                        {
+                            return -1;
+                        }
+                        return 1;
+                    }
+                    else if (b.Time < a.Time)
+                    {
+                        if (a.EventColor == Color.Red && b.EventColor == Color.Orange
+                        || a.EventColor == Color.Orange && b.EventColor == Color.Blue
+                        || a.EventColor == Color.Blue && b.EventColor == Color.Gray)
+                        {
+                            return 1;
+                        }
+                        return -1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                });
             }
         }
 

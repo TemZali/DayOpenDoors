@@ -77,9 +77,9 @@ namespace DayOpenDoors
                             await DisplayAlert("Ошибка", "Пользователь с таким именем уже существует", "Ok");
                         }
                     }
-                    catch
+                    catch(Exception ex)
                     {
-                        await DisplayAlert("Ошибка!", "Отсутствует подключение к сети", "Ок");
+                        await DisplayAlert("Ошибка!", ex.Message, "Ок");
                     }
                 }
                 else
@@ -114,7 +114,7 @@ namespace DayOpenDoors
                 }
                 catch (Exception ex)
                 {
-                    await DisplayAlert("Ошибка", "Отсутствует подключение к сети", "Ок");
+                    await DisplayAlert("Ошибка", ex.Message, "Ок");
                 }
             ((Button)sender).Clicked += CheckExist;
             }

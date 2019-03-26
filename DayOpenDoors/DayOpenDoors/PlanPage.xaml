@@ -15,17 +15,18 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <Frame CornerRadius="10" Padding="0" Margin="0">
-                                    <StackLayout Orientation="Horizontal" Padding="0" HorizontalOptions="FillAndExpand">
-                                        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Start">
-                                            <Label Text="{Binding StartTime}"/>
+                                <Frame CornerRadius="10" Padding="0" Margin="0,0,0,10">
+                                    <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="FillAndExpand">
+                                        <StackLayout HorizontalOptions="Start" MinimumWidthRequest="40">
+                                            <Label Text="{Binding StartTime}" FontFamily="TimesNewRoman"/>
                                             <Label Text="{Binding EndTime}" VerticalOptions="EndAndExpand"/>
                                         </StackLayout>
                                         <BoxView BackgroundColor="{Binding EventColor}" WidthRequest="5" CornerRadius="10"/>
-                                        <StackLayout Padding="0" HorizontalOptions="FillAndExpand">
-                                            <Label Text="{Binding Name}" LineBreakMode="WordWrap" TextColor="Blue"/>
-                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                                <Label Text="{Binding Type}" TextColor="Orange" HorizontalOptions="StartAndExpand"/>
+                                        <StackLayout HorizontalOptions="FillAndExpand">
+                                            <Label Text="{Binding Name}" TextColor="Blue" MaxLines="3"/>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                                                <Label Text="{Binding Type}" TextColor="Orange" HorizontalOptions="Start"/>
+                                                <Label Text="{Binding Place}" HorizontalOptions="CenterAndExpand"/>
                                                 <Label Text="{Binding Status}" TextColor="{Binding EventColor}"  HorizontalOptions="End"/>
                                             </StackLayout>
                                         </StackLayout>

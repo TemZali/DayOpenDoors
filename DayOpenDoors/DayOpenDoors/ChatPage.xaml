@@ -30,7 +30,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal" BackgroundColor="White">
                 <Entry x:Name="TextEntry" Placeholder="Введите сообщение" VerticalOptions="End" HorizontalOptions="FillAndExpand" />
                 <Button Clicked="Click" Text="Отправить" BackgroundColor="White" TextColor="Blue" CornerRadius="10"/>
             </StackLayout>
