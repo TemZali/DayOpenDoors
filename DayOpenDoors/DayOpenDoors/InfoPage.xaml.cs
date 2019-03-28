@@ -15,15 +15,16 @@ namespace DayOpenDoors
         public List<Event> EventList { get; set; }
 
         MainPage mainPage;
+        bool IsAdmin;
+        ToolbarItem map, home, add, refresh;
 
-        ToolbarItem map, home,add,refresh;
-
-        public InfoPage(List<Event> events, MainPage mainPage, ToolbarItem map, ToolbarItem home,ToolbarItem add, bool isAdmin)
+        public InfoPage(List<Event> events, MainPage mainPage, ToolbarItem map, ToolbarItem home, ToolbarItem add, bool isAdmin)
         {
             this.mainPage = mainPage;
             this.map = map;
             this.home = home;
             this.add = add;
+            IsAdmin = isAdmin;
             mainPage.ToolbarItems.Remove(home);
             EventList = events;
             Event.RefreshEventList(EventList);
@@ -79,7 +80,7 @@ namespace DayOpenDoors
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (!ToolbarItems.Contains(add))
+            if (IsAdmin && !ToolbarItems.Contains(add))
             {
                 ToolbarItems.Add(add);
             }
@@ -89,7 +90,7 @@ namespace DayOpenDoors
             }
         }
 
-        private async void GetEvents(object sender,EventArgs e)
+        private async void GetEvents(object sender, EventArgs e)
         {
             GetButton.IsVisible = false;
             HttpClient client = new HttpClient();

@@ -2364,7 +2364,7 @@ namespace DayOpenDoors.Droid
 			public const int avd_show_password_3 = 2130837819;
 			
 			// aapt resource value: 0x7f020055
-			public const int background = 2130837589;
+			public const int Background = 2130837589;
 			
 			// aapt resource value: 0x7f020056
 			public const int Check = 2130837590;

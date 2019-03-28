@@ -77,7 +77,7 @@ namespace DayOpenDoors
                             await DisplayAlert("Ошибка", "Пользователь с таким именем уже существует", "Ok");
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         await DisplayAlert("Ошибка!", ex.Message, "Ок");
                     }
@@ -90,7 +90,7 @@ namespace DayOpenDoors
             }
             else
             {
-                await DisplayAlert("Ошибка","Пароль должен быть от 4 до 8 символов длиной, без пробелов","Ок");
+                await DisplayAlert("Ошибка", "Пароль должен быть от 4 до 8 символов длиной, без пробелов", "Ок");
             }
         }
 
@@ -120,7 +120,7 @@ namespace DayOpenDoors
             }
             else
             {
-                await DisplayAlert("Ошибка","Вы не заполнили поля ввода","Ок");
+                await DisplayAlert("Ошибка", "Вы не заполнили поля ввода", "Ок");
             }
         }
 
@@ -136,7 +136,7 @@ namespace DayOpenDoors
 
         bool CheckPassword()
         {
-            if (!PasswordEntry.Text.Contains(" ")&&PasswordEntry.Text.Length>4)
+            if (!PasswordEntry.Text.Contains(" ") && PasswordEntry.Text.Length > 4)
             {
                 return true;
             }
@@ -145,9 +145,12 @@ namespace DayOpenDoors
 
         private async void ChooseStatus(object sender, EventArgs e)
         {
-            var result = await DisplayActionSheet("Выберите статус", "отмена", null, "Абитуриент", "Родственник абитуриента");
-            StatusButton.Text = result;
-            Status = result;
+            var result = await DisplayActionSheet("Выберите статус", "Отмена", null, "Абитуриент", "Родственник абитуриента");
+            if (result != "Отмена")
+            {
+                StatusButton.Text = result;
+                Status = result;
+            }
         }
 
         async Task<string> PushUserAsync(User user)
