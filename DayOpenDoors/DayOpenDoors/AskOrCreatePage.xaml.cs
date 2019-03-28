@@ -23,7 +23,6 @@ namespace DayOpenDoors
             Status = "";
             this.app = app;
             Client = new HttpClient();
-            //Client.BaseAddress = new Uri("https://dodserver.azurewebsites.net");
             Client.BaseAddress = new Uri("http://dodserver.azurewebsites.net:80");
             Client.DefaultRequestHeaders.Accept.Clear();
             Client.DefaultRequestHeaders.Accept.Add(
@@ -51,7 +50,7 @@ namespace DayOpenDoors
         private async void CreateNew(object sender, EventArgs e)
         {
             ((Button)sender).Clicked -= CreateNew;
-            if (CheckPassword())
+            if (CheckPassword()&&CheckLogin())
             {
                 if ((Status != "") && NameEntry.Text != "" && PasswordEntry.Text != "")
                 {
@@ -90,7 +89,9 @@ namespace DayOpenDoors
             }
             else
             {
-                await DisplayAlert("Ошибка", "Пароль должен быть от 4 до 8 символов длиной, без пробелов", "Ок");
+                await DisplayAlert("Ошибка",
+                    "Пароль должен быть от 4 до 8 символов длиной, без пробелов\n" +
+                    "Логин должен быть от 4 до 20 символов длиной, без пробелов", "Ок");
             }
         }
 
@@ -134,9 +135,19 @@ namespace DayOpenDoors
             }
         }
 
+        bool CheckLogin()
+        {
+            string login = NameEntry.Text;
+            if(login.Contains(" ") || login.Length < 4 || login.Length > 20)
+            {
+                return false;
+            }
+            return true;
+        }
+
         bool CheckPassword()
         {
-            if (!PasswordEntry.Text.Contains(" ") && PasswordEntry.Text.Length > 4)
+            if (!PasswordEntry.Text.Contains(" ") && PasswordEntry.Text.Length >= 4)
             {
                 return true;
             }

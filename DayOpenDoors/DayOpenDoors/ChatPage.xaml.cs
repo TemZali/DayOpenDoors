@@ -162,7 +162,7 @@ namespace DayOpenDoors
                 if(await DisplayAlert("Сообщение", "Хотите удалить сообщение?", "Да", "Нет"))
                 {
                     Message mess = (Message)MessagesView.SelectedItem;
-                    var uri = new Uri(string.Format($"http://dodserver.azurewebsites.net:80/api/message/{mess.Id}", string.Empty));
+                    var uri = new Uri(string.Format($"http://dodserver.azurewebsites.net:80/api/message/{mess.Id-1}", string.Empty));
                     try
                     {
                         await client.DeleteAsync(uri);

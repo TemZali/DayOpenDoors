@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DayOpenDoors.ChatPage"
              Title="Чат"
-             BackgroundImage="Background.png">
+             BackgroundImage="BG2.jpg">
     <ContentPage.Content>
         <StackLayout x:Name="ChatLayout" BackgroundColor="Default">
                 <ListView x:Name="MessagesView"
                       HasUnevenRows="True"
                   ItemsSource="{Binding Messages}"
                       SeparatorVisibility="None"
-                          ItemSelected="Select"
+                          ItemTapped="Select"
                       >
                     <ListView.ItemTemplate>
                         <DataTemplate>

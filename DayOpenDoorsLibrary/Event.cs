@@ -59,6 +59,11 @@ namespace DayOpenDoorsLibrary
                         EventList[i].Status = "Скоро начнется";
                         EventList[i].EventColor = Color.Orange;
                     }
+                    else
+                    {
+                        EventList[i].Status = "Ожидается";
+                        EventList[i].EventColor = Color.Blue;
+                    }
                 }
                 else if (DateTime.Now - EventList[i].Time < new TimeSpan(0, EventList[i].Duration, 0))
                 {
@@ -82,9 +87,9 @@ namespace DayOpenDoorsLibrary
                         || b.EventColor == Color.Orange && a.EventColor == Color.Blue
                         || b.EventColor == Color.Blue && a.EventColor == Color.Gray)
                         {
-                            return -1;
+                            return 1;
                         }
-                        return 1;
+                        return -1;
                     }
                     else if (b.Time < a.Time)
                     {
@@ -92,9 +97,9 @@ namespace DayOpenDoorsLibrary
                         || a.EventColor == Color.Orange && b.EventColor == Color.Blue
                         || a.EventColor == Color.Blue && b.EventColor == Color.Gray)
                         {
-                            return 1;
+                            return -1;
                         }
-                        return -1;
+                        return 1;
                     }
                     else
                     {
