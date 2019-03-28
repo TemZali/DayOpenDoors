@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DayOpenDoors.ChatPage"
              Title="Чат"
-             BackgroundImage="BG2.jpg">
+             BackgroundImage="BG3.jpg">
     <ContentPage.Content>
         <StackLayout x:Name="ChatLayout" BackgroundColor="Default">
                 <ListView x:Name="MessagesView"
