@@ -70,14 +70,21 @@ namespace DayOpenDoors
 
         private async void GetEvents(object sender, EventArgs e)
         {
-            HttpClient client = new HttpClient();
-            Uri uri = new Uri("http://dodserver.azurewebsites.net/api/event/");
-            var response = await client.GetAsync(uri);
-            var content = await response.Content.ReadAsStringAsync();
-            EventList = JsonConvert.DeserializeObject<List<Event>>(content);
-            Event.RefreshEventList(EventList);
-            RefreshEvents();
-            ShowEvents(this, new EventArgs());
+            try
+            {
+                HttpClient client = new HttpClient();
+                Uri uri = new Uri("http://dodserver.azurewebsites.net/api/event/");
+                var response = await client.GetAsync(uri);
+                var content = await response.Content.ReadAsStringAsync();
+                EventList = JsonConvert.DeserializeObject<List<Event>>(content);
+                Event.RefreshEventList(EventList);
+                RefreshEvents();
+                ShowEvents(this, new EventArgs());
+            }
+            catch
+            {
+                await DisplayAlert("Ошибка", "Отсутсвует подключение к сети", "Ок");
+            }
         }
 
         private async void ShowEvents(object sender, EventArgs e)
