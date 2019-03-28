@@ -104,7 +104,6 @@ namespace DayOpenDoors
             InfoList.ItemsSource = null;
             InfoList.ItemsSource = EventList;
             InfoList.IsVisible = true;
-            BackgroundImage = "FCSTree.png";
         }
 
         private async void Display(object sender, EventArgs e)
