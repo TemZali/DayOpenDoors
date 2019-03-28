@@ -137,5 +137,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\FCSTree3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\FCSTree4.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

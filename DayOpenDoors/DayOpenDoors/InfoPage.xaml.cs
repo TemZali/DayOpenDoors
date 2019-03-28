@@ -26,7 +26,7 @@ namespace DayOpenDoors
             if (width > height)
                 BackgroundImage = "FCSTree3.png";
             else
-                BackgroundImage = "FCSTree.png";
+                BackgroundImage = "FCSTree4.png";
         }
         #endregion
 
