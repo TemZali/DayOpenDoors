@@ -29,6 +29,7 @@ namespace DayOpenDoors
             EventList = events;
             Event.RefreshEventList(EventList);
             InitializeComponent();
+            BackgroundColor = Color.White;
             InfoList.IsVisible = false;
             if (isAdmin)
             {
@@ -103,6 +104,7 @@ namespace DayOpenDoors
             InfoList.ItemsSource = null;
             InfoList.ItemsSource = EventList;
             InfoList.IsVisible = true;
+            BackgroundImage = "FCSTree.png";
         }
 
         private async void Display(object sender, EventArgs e)

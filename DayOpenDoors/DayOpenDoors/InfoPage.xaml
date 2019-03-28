@@ -4,7 +4,7 @@
              x:Class="DayOpenDoors.InfoPage"
               Title="Добро пожаловать!">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout x:Name="InfoLayout" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <ListView x:Name="InfoList"
             ItemsSource="{Binding EventList}"
             HasUnevenRows="True">
@@ -34,8 +34,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button BackgroundColor="White" Text="Обновить список" TextColor="Blue"
-                    BorderColor="Blue" BorderRadius="10" HorizontalOptions="Center"
+            <Button BackgroundColor="White" Text="Показать список мероприятий" TextColor="Blue"
+                    BorderColor="White" HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center" Clicked="GetEvents" x:Name="GetButton"/>
         </StackLayout>
     </ContentPage.Content>
