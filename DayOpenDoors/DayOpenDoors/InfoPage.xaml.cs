@@ -18,6 +18,18 @@ namespace DayOpenDoors
         bool IsAdmin;
         ToolbarItem map, home, add, refresh;
 
+        #region Поворот экрана
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+
+            if (width > height)
+                BackgroundImage = "FCSTree3.png";
+            else
+                BackgroundImage = "FCSTree.png";
+        }
+        #endregion
+
         public InfoPage(List<Event> events, MainPage mainPage, ToolbarItem map, ToolbarItem home, ToolbarItem add, bool isAdmin)
         {
             this.mainPage = mainPage;

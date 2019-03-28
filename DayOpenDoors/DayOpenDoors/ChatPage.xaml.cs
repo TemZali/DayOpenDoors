@@ -14,6 +14,18 @@ namespace DayOpenDoors
 
     public partial class ChatPage : ContentPage
     {
+        #region Поворот экрана
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+
+            if (width > height)
+                BackgroundImage = "BG32.png";
+            else
+                BackgroundImage = "BG3.jpg";
+        }
+        #endregion
+
         private bool CheckCountOfMessages()
         {
             try

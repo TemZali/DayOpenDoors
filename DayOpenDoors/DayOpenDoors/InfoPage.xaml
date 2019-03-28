@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DayOpenDoors.InfoPage"
-             Title="Добро пожаловать!"
-             BackgroundImage = "FCSTree.png">
+             Title="Добро пожаловать!">
     <ContentPage.Content>
         <StackLayout x:Name="InfoLayout" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <ListView x:Name="InfoList"
