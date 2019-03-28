@@ -88,9 +88,16 @@ namespace DayOpenDoors
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
             InitializeComponent();
-            Task.Run(CheckUser);
-            Device.StartTimer(TimeSpan.FromSeconds(5), CheckCountOfMessages);
-            this.BindingContext = this;
+            try
+            {
+                Task.Run(CheckUser);
+                Device.StartTimer(TimeSpan.FromSeconds(5), CheckCountOfMessages);
+                this.BindingContext = this;
+            }
+            catch
+            {
+                DisplayAlert("Ошибка", "Отсутсвует подключение к сети", "Ок");
+            }
         }
 
         public async Task CheckUser()
@@ -190,25 +197,32 @@ namespace DayOpenDoors
 
         private async void Click(object sender, EventArgs e)
         {
-            if (IsUserExist)
+            try
             {
-                if (TextEntry.Text != null&&TextEntry.Text.Trim().Length>0)
+                if (IsUserExist)
                 {
-                    await PushMessageAsync(new Message
+                    if (TextEntry.Text != null && TextEntry.Text.Trim().Length > 0)
                     {
-                        Mess = TextEntry.Text.Trim(),
-                        UserId = ThisUser.Id.ToString(),
-                        Username = ThisUser.Username,
-                        Userstatus = ThisUser.Userstatus,
-                        Time = DateTime.Now.Hour.ToString("00") + ":" + DateTime.Now.Minute.ToString("00")
-                    });
+                        await PushMessageAsync(new Message
+                        {
+                            Mess = TextEntry.Text.Trim(),
+                            UserId = ThisUser.Id.ToString(),
+                            Username = ThisUser.Username,
+                            Userstatus = ThisUser.Userstatus,
+                            Time = DateTime.Now.Hour.ToString("00") + ":" + DateTime.Now.Minute.ToString("00")
+                        });
+                    }
                 }
+                else
+                {
+                    await DisplayAlert("Ошибка", "Незарегистрированный пользователь не может использовать чат!", "Ок");
+                }
+                TextEntry.Text = null;
             }
-            else
+            catch
             {
-                await DisplayAlert("Ошибка", "Незарегистрированный пользователь не может использовать чат!", "Ок");
+                await DisplayAlert("Ошибка", "Отсутсвует подключение к сети", "Ок");
             }
-            TextEntry.Text = null;
 
         }
     }

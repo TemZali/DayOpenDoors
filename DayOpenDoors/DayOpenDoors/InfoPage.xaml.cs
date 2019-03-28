@@ -105,17 +105,24 @@ namespace DayOpenDoors
 
         private async void GetEvents(object sender, EventArgs e)
         {
-            GetButton.IsVisible = false;
-            HttpClient client = new HttpClient();
-            Uri uri = new Uri("http://dodserver.azurewebsites.net/api/event/");
-            var response = await client.GetAsync(uri);
-            var content = await response.Content.ReadAsStringAsync();
-            EventList = JsonConvert.DeserializeObject<List<Event>>(content);
-            mainPage.EventList = EventList;
-            Event.RefreshEventList(EventList);
-            InfoList.ItemsSource = null;
-            InfoList.ItemsSource = EventList;
-            InfoList.IsVisible = true;
+            try
+            {
+                GetButton.IsVisible = false;
+                HttpClient client = new HttpClient();
+                Uri uri = new Uri("http://dodserver.azurewebsites.net/api/event/");
+                var response = await client.GetAsync(uri);
+                var content = await response.Content.ReadAsStringAsync();
+                EventList = JsonConvert.DeserializeObject<List<Event>>(content);
+                mainPage.EventList = EventList;
+                Event.RefreshEventList(EventList);
+                InfoList.ItemsSource = null;
+                InfoList.ItemsSource = EventList;
+                InfoList.IsVisible = true;
+            }
+            catch
+            {
+                await DisplayAlert("Ошибка", "Отсутсвует подключение к сети", "Ок");
+            }
         }
 
         private async void Display(object sender, EventArgs e)
@@ -127,12 +134,19 @@ namespace DayOpenDoors
 
         async Task DeleteEvent(Event ev)
         {
-            EventList.Remove(ev);
-            InfoList.ItemsSource = null;
-            InfoList.ItemsSource = EventList;
-            HttpClient client = new HttpClient();
-            Uri address = new Uri($"http://dodserver.azurewebsites.net/api/event/{ev.Id.ToString()}");
-            await client.DeleteAsync(address);
+            try
+            {
+                EventList.Remove(ev);
+                InfoList.ItemsSource = null;
+                InfoList.ItemsSource = EventList;
+                HttpClient client = new HttpClient();
+                Uri address = new Uri($"http://dodserver.azurewebsites.net/api/event/{ev.Id.ToString()}");
+                await client.DeleteAsync(address);
+            }
+            catch
+            {
+                await DisplayAlert("Ошибка", "Отсутсвует подключение к сети", "Ок");
+            }
         }
     }
 }

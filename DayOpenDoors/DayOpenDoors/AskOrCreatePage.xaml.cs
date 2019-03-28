@@ -97,7 +97,7 @@ namespace DayOpenDoors
 
         private async void CheckExist(object sender, EventArgs e)
         {
-            if (NameEntry.Text.Length > 0 && PasswordEntry.Text.Length > 0)
+            if (NameEntry.Text!="" && NameEntry.Text != null && PasswordEntry.Text!="" && PasswordEntry.Text != null)
             {
                 ((Button)sender).Clicked -= CheckExist;
                 try
@@ -166,7 +166,6 @@ namespace DayOpenDoors
 
         async Task<string> PushUserAsync(User user)
         {
-            //var uri = new Uri(string.Format($"https://dodserver.azurewebsites.net/api/user/", string.Empty));
             var uri = new Uri("http://dodserver.azurewebsites.net:80/api/user/");
 
             var json = JsonConvert.SerializeObject(user);
@@ -177,7 +176,6 @@ namespace DayOpenDoors
 
         async Task<User> CheckUserAsync(string package)
         {
-            //var uri = new Uri(string.Format($"https://dodserver.azurewebsites.net/api/user/{package}", string.Empty));
             var uri = new Uri($"http://dodserver.azurewebsites.net:80/api/user/{package}");
             var response = await Client.GetAsync(uri);
             if (response.IsSuccessStatusCode)
