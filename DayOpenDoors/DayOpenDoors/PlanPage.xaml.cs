@@ -90,7 +90,7 @@ namespace DayOpenDoors
         private async void ShowEvents(object sender, EventArgs e)
         {
             var result = await DisplayActionSheet("Выберите тип мероприятия", "Отмена", null, "Лекции", "Мастер-классы");
-            if (result != "Отмена")
+            if (result != "Отмена"&&result!=null)
             {
                 TypeButton.Text = result;
                 if (result == "Лекции")

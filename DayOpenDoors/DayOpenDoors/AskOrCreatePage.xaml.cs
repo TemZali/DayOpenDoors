@@ -157,7 +157,7 @@ namespace DayOpenDoors
         private async void ChooseStatus(object sender, EventArgs e)
         {
             var result = await DisplayActionSheet("Выберите статус", "Отмена", null, "Абитуриент", "Родственник абитуриента");
-            if (result != "Отмена")
+            if (result != "Отмена"&&result!=null)
             {
                 StatusButton.Text = result;
                 Status = result;
