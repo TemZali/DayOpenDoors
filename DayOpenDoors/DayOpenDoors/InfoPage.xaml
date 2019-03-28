@@ -2,41 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DayOpenDoors.InfoPage"
-             Title="Добро пожаловать!">
-    <ContentPage.Content>
-        <StackLayout x:Name="InfoLayout" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <ListView x:Name="InfoList"
-            ItemsSource="{Binding EventList}"
-            HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.View>
-                                <Frame CornerRadius="10" Padding="0" Margin="0,0,0,10">
-                                    <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="FillAndExpand">
-                                        <StackLayout HorizontalOptions="Start" MinimumWidthRequest="40">
-                                            <Label Text="{Binding StartTime}" FontFamily="TimesNewRoman"/>
-                                            <Label Text="{Binding EndTime}" VerticalOptions="EndAndExpand"/>
-                                        </StackLayout>
-                                        <BoxView BackgroundColor="{Binding EventColor}" WidthRequest="5" CornerRadius="10"/>
-                                        <StackLayout HorizontalOptions="FillAndExpand">
-                                            <Label Text="{Binding Name}" TextColor="Blue" MaxLines="3"/>
-                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-                                                <Label Text="{Binding Type}" TextColor="Orange" HorizontalOptions="Start"/>
-                                                <Label Text="{Binding Place}" HorizontalOptions="CenterAndExpand"/>
-                                                <Label Text="{Binding Status}" TextColor="{Binding EventColor}"  HorizontalOptions="End"/>
-                                            </StackLayout>
-                                        </StackLayout>
-                                    </StackLayout>
-                                </Frame>
-                            </ViewCell.View>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Button BackgroundColor="White" Text="Показать список мероприятий" TextColor="Blue"
-                    BorderColor="White" HorizontalOptions="FillAndExpand"
-                    VerticalOptions="Center" Clicked="GetEvents" x:Name="GetButton"/>
-        </StackLayout>
-    </ContentPage.Content>
+             Title="Добро пожаловать!"
+             BackgroundImage="FCSTree4.png">
+  <ContentPage.Content>
+    <StackLayout x:Name="InfoLayout" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+      <ListView x:Name="InfoList"
+      ItemsSource="{Binding EventList}"
+      HasUnevenRows="True">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+                <Frame CornerRadius="10" Padding="0" Margin="0,0,0,10">
+                  <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="Start" MinimumWidthRequest="40">
+                      <Label Text="{Binding StartTime}" FontFamily="TimesNewRoman"/>
+                      <Label Text="{Binding EndTime}" VerticalOptions="EndAndExpand"/>
+                    </StackLayout>
+                    <BoxView BackgroundColor="{Binding EventColor}" WidthRequest="5" CornerRadius="10"/>
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                      <Label Text="{Binding Name}" TextColor="Blue" MaxLines="3"/>
+                      <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                        <Label Text="{Binding Type}" TextColor="Orange" HorizontalOptions="Start"/>
+                        <Label Text="{Binding Place}" HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding Status}" TextColor="{Binding EventColor}"  HorizontalOptions="End"/>
+                      </StackLayout>
+                    </StackLayout>
+                  </StackLayout>
+                </Frame>
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage.Content>
 </ContentPage>

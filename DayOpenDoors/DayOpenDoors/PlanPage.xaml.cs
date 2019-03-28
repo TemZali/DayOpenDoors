@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using DayOpenDoorsLibrary;
 using Xamarin.Forms;
+using Plugin.Settings;
 using Xamarin.Forms.Xaml;
 
 namespace DayOpenDoors
@@ -22,14 +24,15 @@ namespace DayOpenDoors
         public PlanPage(List<Event> events)
         {
             EventList = events;
+
             refresh = new ToolbarItem()
             {
                 Text = "Обновить список",
                 Order = ToolbarItemOrder.Secondary
             };
-            refresh.Clicked += (s, e) =>
+            refresh.Clicked += async (s, e) =>
             {
-                GetEvents(this, new EventArgs());
+                await GetEvents();
             };
             InitializeComponent();
 
@@ -68,7 +71,7 @@ namespace DayOpenDoors
             ToolbarItems.Remove(refresh);
         }
 
-        private async void GetEvents(object sender, EventArgs e)
+        private async Task GetEvents()
         {
             try
             {
@@ -80,17 +83,20 @@ namespace DayOpenDoors
                 Event.RefreshEventList(EventList);
                 RefreshEvents();
                 ShowEvents(this, new EventArgs());
+                CrossSettings.Current.AddOrUpdateValue("List", JsonConvert.SerializeObject(EventList));
             }
             catch
             {
-                await DisplayAlert("Ошибка", "Отсутсвует подключение к сети", "Ок");
+                await DisplayAlert("Ошибка", "Отсутствует подключение к сети" +
+                    "\nБудет показан загруженный ранее список мероприятий", "Ок");
+                EventList = JsonConvert.DeserializeObject<List<Event>>(CrossSettings.Current.GetValueOrDefault("List", null));
             }
         }
 
         private async void ShowEvents(object sender, EventArgs e)
         {
             var result = await DisplayActionSheet("Выберите тип мероприятия", "Отмена", null, "Лекции", "Мастер-классы");
-            if (result != "Отмена"&&result!=null)
+            if (result != "Отмена" && result != null)
             {
                 TypeButton.Text = result;
                 if (result == "Лекции")

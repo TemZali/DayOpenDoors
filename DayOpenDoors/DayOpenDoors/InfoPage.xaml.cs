@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Xamarin.Forms.Xaml;
+using Plugin.Settings;
 
 namespace DayOpenDoors
 {
@@ -30,7 +31,9 @@ namespace DayOpenDoors
         }
         #endregion
 
-        public InfoPage(List<Event> events, MainPage mainPage, ToolbarItem map, ToolbarItem home, ToolbarItem add, bool isAdmin)
+        // TODO: 
+
+        public InfoPage(MainPage mainPage, ToolbarItem map, ToolbarItem home, ToolbarItem add, bool isAdmin)
         {
             this.mainPage = mainPage;
             this.map = map;
@@ -38,11 +41,7 @@ namespace DayOpenDoors
             this.add = add;
             IsAdmin = isAdmin;
             mainPage.ToolbarItems.Remove(home);
-            EventList = events;
-            Event.RefreshEventList(EventList);
             InitializeComponent();
-            BackgroundColor = Color.White;
-            InfoList.IsVisible = false;
             if (isAdmin)
             {
                 InfoList.ItemTapped += Change;
@@ -57,9 +56,12 @@ namespace DayOpenDoors
                 Text = "Обновить список",
                 Order = ToolbarItemOrder.Secondary
             };
-            refresh.Clicked += (s, e) =>
+            refresh.Clicked += async (s, e) =>
             {
-                GetEvents(this, new EventArgs());
+                await GetEvents();
+                Event.RefreshEventList(EventList);
+                InfoList.ItemsSource = null;
+                InfoList.ItemsSource = EventList;
             };
         }
 
@@ -75,7 +77,12 @@ namespace DayOpenDoors
                     break;
                 case "Удалить":
                     if (await DisplayAlert("Удаление", "Вы уверены?", "Да", "Нет"))
+                    {
                         await DeleteEvent(selected);
+                        Event.RefreshEventList(EventList);
+                        InfoList.ItemsSource = null;
+                        InfoList.ItemsSource = EventList;
+                    }
                     break;
                 case "Изменить":
                     await Navigation.PushAsync(new CreateOrUpdatePage("update", selected));
@@ -90,8 +97,12 @@ namespace DayOpenDoors
             ToolbarItems.Remove(refresh);
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
+            await GetEvents();
+            Event.RefreshEventList(EventList);
+            InfoList.ItemsSource = null;
+            InfoList.ItemsSource = EventList;
             base.OnAppearing();
             if (IsAdmin && !ToolbarItems.Contains(add))
             {
@@ -103,25 +114,23 @@ namespace DayOpenDoors
             }
         }
 
-        private async void GetEvents(object sender, EventArgs e)
+        private async Task GetEvents()
         {
             try
             {
-                GetButton.IsVisible = false;
                 HttpClient client = new HttpClient();
                 Uri uri = new Uri("http://dodserver.azurewebsites.net/api/event/");
                 var response = await client.GetAsync(uri);
                 var content = await response.Content.ReadAsStringAsync();
                 EventList = JsonConvert.DeserializeObject<List<Event>>(content);
                 mainPage.EventList = EventList;
-                Event.RefreshEventList(EventList);
-                InfoList.ItemsSource = null;
-                InfoList.ItemsSource = EventList;
-                InfoList.IsVisible = true;
+                CrossSettings.Current.AddOrUpdateValue("List",JsonConvert.SerializeObject(EventList));
             }
             catch
             {
-                await DisplayAlert("Ошибка", "Отсутсвует подключение к сети", "Ок");
+                await DisplayAlert("Ошибка", "Отсутствует подключение к сети" +
+                    "\nБудет показан загруженный ранее список мероприятий", "Ок");
+                EventList = JsonConvert.DeserializeObject<List<Event>>(CrossSettings.Current.GetValueOrDefault("List", null));
             }
         }
 
@@ -136,12 +145,10 @@ namespace DayOpenDoors
         {
             try
             {
-                EventList.Remove(ev);
-                InfoList.ItemsSource = null;
-                InfoList.ItemsSource = EventList;
                 HttpClient client = new HttpClient();
                 Uri address = new Uri($"http://dodserver.azurewebsites.net/api/event/{ev.Id.ToString()}");
                 await client.DeleteAsync(address);
+                await GetEvents();
             }
             catch
             {
