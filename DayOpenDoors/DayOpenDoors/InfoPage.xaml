@@ -13,7 +13,7 @@
           <DataTemplate>
             <ViewCell>
               <ViewCell.View>
-                <Frame CornerRadius="10" Padding="0" Margin="0,0,0,10" BackgroundColor="#f0f4ff">
+                <Frame CornerRadius="10" Padding="0" Margin="0,0,0,10" BackgroundColor="#f0f6fd">
                   <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="FillAndExpand">
                     <StackLayout HorizontalOptions="Start" MinimumWidthRequest="40">
                       <Label Text="{Binding StartTime}" FontFamily="TimesNewRoman"/>
