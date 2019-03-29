@@ -8,8 +8,8 @@
             <Style TargetType="Button">
                 <Setter Property="BackgroundColor" Value="White"/>
                 <Setter Property="TextColor" Value="Blue"/>
-                <Setter Property="BorderRadius" Value="0"/>
-                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="BorderRadius" Value="10"/>
+                <Setter Property="BorderColor" Value="Blue"/>
                 <Setter Property="BorderWidth" Value="2"/>
                 <Setter Property="Margin" Value="0,5,0,5"/>
             </Style>
@@ -18,14 +18,15 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Добро пожаловать!">
             <ContentPage.Content>
-                <StackLayout Spacing="5" BackgroundColor="White">
+                <StackLayout Spacing="5" BackgroundColor="White" Padding="5">
                     <StackLayout Orientation="Horizontal" BackgroundColor="White">
                         <Image Source="CoolTrench.jpg" WidthRequest="50" HeightRequest="50" HorizontalOptions="Start"/>
                         <StackLayout VerticalOptions="CenterAndExpand" Spacing="0">
                             <Label TextColor="Blue" x:Name="NameLabel" FontSize="Medium" />
                             <Label TextColor="Orange" x:Name="StatusLabel" FontSize="Small"/>
                         </StackLayout>
-                        <Button Text="Сменить аккаунт" Clicked="Exit" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"/>
+                        <Button Text="Сменить аккаунт" Clicked="Exit" HorizontalOptions="FillAndExpand"
+                                BorderColor="White" VerticalOptions="EndAndExpand"/>
                     </StackLayout>
                     <Button Text="План мероприятия" Clicked="Plan_Click"/>
                     <Button Text="Чат" Clicked="Chat_Click"/>
