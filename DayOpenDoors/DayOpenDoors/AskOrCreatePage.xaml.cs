@@ -101,7 +101,6 @@ namespace DayOpenDoors
                 {
                     await DisplayAlert("Ошибка", "Пароли не совпадают", "Ок");
                 }
-           ((Button)sender).Clicked += CreateNew;
             }
             else
             {
@@ -109,6 +108,7 @@ namespace DayOpenDoors
                     "Пароль должен быть от 4 до 8 символов длиной, без пробелов\n" +
                     "Логин должен быть от 4 до 20 символов длиной, без пробелов", "Ок");
             }
+           ((Button)sender).Clicked += CreateNew;
         }
 
         private async void CheckExist(object sender, EventArgs e)

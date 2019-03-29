@@ -35,12 +35,19 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout Orientation="Horizontal" Spacing="0">
-                <Button VerticalOptions="End" Text="Лекции" BorderRadius="0" Clicked="Lections_Click"
-                        BackgroundColor="Blue" TextColor="White" HorizontalOptions="FillAndExpand" />
-                <Button VerticalOptions="End" Text="Мастер-классы" BorderRadius="0" Clicked="Master_Click"
-                        BackgroundColor="Blue" TextColor="White" HorizontalOptions="FillAndExpand" />
-            </StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Button Text="Лекции" Clicked="Lections_Click" Grid.Column="0" Grid.Row="0"
+                        BackgroundColor="Blue" TextColor="White" BorderRadius="0" />
+                <Button Text="Мастер-классы" Clicked="Master_Click" Grid.Column="1" Grid.Row="0"
+                        BackgroundColor="Blue" TextColor="White" BorderRadius="0" />
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
