@@ -21,6 +21,18 @@ namespace DayOpenDoors
 
         ToolbarItem refresh;
 
+        #region Поворот экрана
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+
+            if (width > height)
+                BackgroundImage = "PlanBackground2.jpg";
+            else
+                BackgroundImage = "PlanBackground.jpg";
+        }
+        #endregion
+
         public PlanPage(List<Event> events)
         {
             EventList = events;
