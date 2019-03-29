@@ -165,4 +165,46 @@
       <Name>DayOpenDoors</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BG3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BG32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\CoolTrench.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\elevator.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\FCSTree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\FCSTree2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\FCSTree3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\FCSTree4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlanBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\PlanBackground2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Trench.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Way1.jpg" />
+  </ItemGroup>
 </Project>
