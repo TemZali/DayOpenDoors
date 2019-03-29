@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DayOpenDoors.WayPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="WayLabel"  LineBreakMode="WordWrap"/>
-            <Image Source="Way1.jpg" HeightRequest="350" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Padding="10">
+                <Label x:Name="WayLabel"  LineBreakMode="WordWrap"/>
+                <Image Source="Way1.jpg" HeightRequest="350" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
