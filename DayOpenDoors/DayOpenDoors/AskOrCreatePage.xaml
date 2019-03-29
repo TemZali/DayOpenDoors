@@ -5,13 +5,20 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
             <Image Source="Trench.png" HeightRequest="200" WidthRequest="200"/>
-            <Entry x:Name="NameEntry" HorizontalOptions="FillAndExpand" PlaceholderColor="Blue" HorizontalTextAlignment="Center"/>
-            <Entry x:Name="PasswordEntry" IsPassword="True" TextChanged="CheckLength"
-                   HorizontalOptions="FillAndExpand" PlaceholderColor="Blue" HorizontalTextAlignment="Center"/>
-            <Button x:Name="StatusButton" Text="Выберите статус" FontSize="Small" Clicked="ChooseStatus" BackgroundColor="White" TextColor="Blue"
-                    BorderColor="Blue" BorderRadius="10" BorderWidth="2" HorizontalOptions="FillAndExpand" />
-            <Button x:Name="AskOrCreateButton" BackgroundColor="White" TextColor="Blue"
-                    BorderColor="Blue" BorderRadius="10" BorderWidth="2" HorizontalOptions="FillAndExpand"/>
+            <StackLayout Orientation="Horizontal">
+                <Entry x:Name="NameEntry" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+                <Entry x:Name="LoginEntry" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <Entry x:Name="FirstPasswordEntry" IsPassword="True" TextChanged="CheckLength"
+                   HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+            <Entry x:Name="SecondPasswordEntry" IsPassword="True" TextChanged="CheckLength"
+                   HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+            <Entry x:Name="EmailEntry" TextChanged="CheckEmailLength" 
+                   HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+            <Button x:Name="StatusButton" Text="Выберите статус" FontSize="Small" Clicked="ChooseStatus" BackgroundColor="Blue" TextColor="White"
+                    BorderColor="Blue" BorderRadius="0" BorderWidth="2" HorizontalOptions="FillAndExpand" />
+            <Button x:Name="AskOrCreateButton" BackgroundColor="Blue" TextColor="White"
+                    BorderColor="Blue" BorderRadius="0" BorderWidth="2" HorizontalOptions="FillAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -31,8 +31,11 @@ namespace DayOpenDoors
             if (status == "sign_in")
             {
                 StatusButton.IsVisible = false;
-                NameEntry.Placeholder = "Введите имя";
-                PasswordEntry.Placeholder = "Введите пароль";
+                NameEntry.IsVisible = false;
+                SecondPasswordEntry.IsVisible = false;
+                EmailEntry.IsVisible = false;
+                LoginEntry.Placeholder = "Введите логин";
+                FirstPasswordEntry.Placeholder = "Введите пароль";
                 Title = "Авторизация";
                 AskOrCreateButton.Clicked += new EventHandler(CheckExist);
                 AskOrCreateButton.Text = "Авторизоваться";
@@ -40,7 +43,10 @@ namespace DayOpenDoors
             else
             {
                 NameEntry.Placeholder = "Введите имя";
-                PasswordEntry.Placeholder = "Придумайте пароль";
+                LoginEntry.Placeholder = "Введите логин";
+                FirstPasswordEntry.Placeholder = "Придумайте пароль";
+                SecondPasswordEntry.Placeholder = "Повторите пароль";
+                EmailEntry.Placeholder = "Введите e-mail";
                 Title = "Регистрация";
                 AskOrCreateButton.Clicked += new EventHandler(CreateNew);
                 AskOrCreateButton.Text = "Зарегистрироваться";
@@ -50,40 +56,50 @@ namespace DayOpenDoors
         private async void CreateNew(object sender, EventArgs e)
         {
             ((Button)sender).Clicked -= CreateNew;
-            if (CheckPassword()&&CheckLogin())
+            if (CheckPassword() && CheckLogin()&&CheckName())
             {
-                if ((Status != "") && NameEntry.Text != "" && PasswordEntry.Text != "")
+                if (FirstPasswordEntry.Text == SecondPasswordEntry.Text)
                 {
-                    try
+
+                    if ((Status != "") && NameEntry.Text != "" && LoginEntry.Text != "" && FirstPasswordEntry.Text != "")
                     {
-                        string newId = await PushUserAsync(new User
+                        try
                         {
-                            Id = 1,
-                            Username = NameEntry.Text,
-                            Userpassword = GetMd5Hash(MD5.Create(), PasswordEntry.Text),
-                            Userstatus = Status
-                        });
+                            string newId = await PushUserAsync(new User
+                            {
+                                Id = 1,
+                                Username = NameEntry.Text,
+                                Userpassword = GetMd5Hash(MD5.Create(), FirstPasswordEntry.Text),
+                                Userstatus = Status,
+                                Email = EmailEntry.Text,
+                                Usernick = LoginEntry.Text
+                            });
 
-                        if (newId != "-1")
-                        {
+                            if (newId != "-1")
+                            {
 
-                            CrossSettings.Current.AddOrUpdateValue("User", $"{newId},{NameEntry.Text},{Status}");
+                                CrossSettings.Current.AddOrUpdateValue("User", $"{newId},{NameEntry.Text},{Status}");
 
-                            app.MainPage = new MainPage(app);
+                                app.MainPage = new MainPage(app);
+                            }
+                            else
+                            {
+                                await DisplayAlert("Ошибка", "Пользователь с таким логином уже существует", "Ok");
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            await DisplayAlert("Ошибка", "Пользователь с таким именем уже существует", "Ok");
+                            await DisplayAlert("Ошибка!", ex.Message, "Ок");
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        await DisplayAlert("Ошибка!", ex.Message, "Ок");
+                        await DisplayAlert("Ошибка", "Заполните все поля", "Ок");
                     }
                 }
                 else
                 {
-                    await DisplayAlert("Ошибка", "Заполните все поля", "Ок");
+                    await DisplayAlert("Ошибка", "Пароли не совпадают", "Ок");
                 }
            ((Button)sender).Clicked += CreateNew;
             }
@@ -97,12 +113,12 @@ namespace DayOpenDoors
 
         private async void CheckExist(object sender, EventArgs e)
         {
-            if (NameEntry.Text!="" && NameEntry.Text != null && PasswordEntry.Text!="" && PasswordEntry.Text != null)
+            if (LoginEntry.Text != "" && FirstPasswordEntry.Text != "")
             {
                 ((Button)sender).Clicked -= CheckExist;
                 try
                 {
-                    User instance = await CheckUserAsync(NameEntry.Text + " " + GetMd5Hash(MD5.Create(), PasswordEntry.Text));
+                    User instance = await CheckUserAsync(LoginEntry.Text + " " + GetMd5Hash(MD5.Create(), FirstPasswordEntry.Text));
                     if (instance == null)
                     {
                         await DisplayAlert("Ошибка", "Неверный логин или пароль", "Ок");
@@ -127,18 +143,38 @@ namespace DayOpenDoors
 
         private void CheckLength(object sender, EventArgs e)
         {
-            string password = PasswordEntry.Text;
+            string password = FirstPasswordEntry.Text;
             if (password.Length > 8)
             {
                 password.Remove(password.Length - 1);
-                PasswordEntry.Text = password;
+                FirstPasswordEntry.Text = password;
             }
+        }
+
+        private void CheckEmailLength(object sender, EventArgs e)
+        {
+            string email = EmailEntry.Text;
+            if (email.Length > 30)
+            {
+                email.Remove(email.Length - 1);
+                FirstPasswordEntry.Text = email;
+            }
+        }
+
+        bool CheckName()
+        {
+            string name = NameEntry.Text;
+            if (name.Contains(" ") || name.Length < 4 || name.Length > 20)
+            {
+                return false;
+            }
+            return true;
         }
 
         bool CheckLogin()
         {
-            string login = NameEntry.Text;
-            if(login.Contains(" ") || login.Length < 4 || login.Length > 20)
+            string login = LoginEntry.Text;
+            if (login.Contains(" ") || login.Length < 4 || login.Length > 20)
             {
                 return false;
             }
@@ -147,7 +183,7 @@ namespace DayOpenDoors
 
         bool CheckPassword()
         {
-            if (!PasswordEntry.Text.Contains(" ") && PasswordEntry.Text.Length >= 4)
+            if (!FirstPasswordEntry.Text.Contains(" ") && FirstPasswordEntry.Text.Length >= 4)
             {
                 return true;
             }
@@ -157,7 +193,7 @@ namespace DayOpenDoors
         private async void ChooseStatus(object sender, EventArgs e)
         {
             var result = await DisplayActionSheet("Выберите статус", "Отмена", null, "Абитуриент", "Родственник абитуриента");
-            if (result != "Отмена"&&result!=null)
+            if (result != "Отмена" && result != null)
             {
                 StatusButton.Text = result;
                 Status = result;
