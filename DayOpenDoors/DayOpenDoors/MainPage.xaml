@@ -18,7 +18,7 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Добро пожаловать!">
             <ContentPage.Content>
-                <StackLayout Spacing="5" BackgroundColor="White" Padding="5">
+                <StackLayout Spacing="5" BackgroundColor="White" Padding="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <StackLayout Orientation="Horizontal" BackgroundColor="White">
                         <Image Source="CoolTrench.jpg" WidthRequest="50" HeightRequest="50" HorizontalOptions="Start"/>
                         <StackLayout VerticalOptions="CenterAndExpand" Spacing="0">
@@ -30,6 +30,7 @@
                     <Button Text="Чат" Clicked="Chat_Click"/>
                     <Button Text="Как добраться" Clicked="Way_Click"/>
                     <Button Text="Сменить аккаунт" Clicked="Exit"/>
+                    <Label Text="Made dy Artyom Zaydullin and Zhenya Torkunov" LineBreakMode="WordWrap" HorizontalOptions="End" />
                 </StackLayout>
             </ContentPage.Content>
         </ContentPage>
