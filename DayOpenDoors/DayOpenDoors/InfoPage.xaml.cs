@@ -58,7 +58,8 @@ namespace DayOpenDoors
             };
             refresh.Clicked += async (s, e) =>
             {
-                await GetEvents();
+                var res = GetEvents();
+                res.Wait();
                 Event.RefreshEventList(EventList);
                 InfoList.ItemsSource = null;
                 InfoList.ItemsSource = EventList;

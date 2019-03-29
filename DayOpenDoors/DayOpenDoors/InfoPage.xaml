@@ -5,7 +5,7 @@
              Title="Добро пожаловать!"
              BackgroundImage="FCSTree4.png">
   <ContentPage.Content>
-    <StackLayout x:Name="InfoLayout" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    <StackLayout x:Name="InfoLayout" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="5">
       <ListView x:Name="InfoList"
       ItemsSource="{Binding EventList}"
       HasUnevenRows="True">

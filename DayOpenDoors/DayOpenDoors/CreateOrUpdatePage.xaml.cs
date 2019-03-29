@@ -23,6 +23,7 @@ namespace DayOpenDoors
             {
                 old = ev;
                 NameEntry.Text = ev.Name;
+                PlaceEntry.Text = ev.Place;
                 SpeakerEntry.Text = ev.SpeakerName;
                 MonthEntry.Text = ev.Time.Month.ToString();
                 DayEntry.Text = ev.Time.Day.ToString();

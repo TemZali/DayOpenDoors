@@ -82,7 +82,7 @@ namespace DayOpenDoors
                 EventList = JsonConvert.DeserializeObject<List<Event>>(content);
                 Event.RefreshEventList(EventList);
                 RefreshEvents();
-                ShowEvents(this, new EventArgs());
+                //ShowEvents(this, new EventArgs());
                 CrossSettings.Current.AddOrUpdateValue("List", JsonConvert.SerializeObject(EventList));
             }
             catch
@@ -93,7 +93,7 @@ namespace DayOpenDoors
             }
         }
 
-        private async void ShowEvents(object sender, EventArgs e)
+        /*private async void ShowEvents(object sender, EventArgs e)
         {
             var result = await DisplayActionSheet("Выберите тип мероприятия", "Отмена", null, "Лекции", "Мастер-классы");
             if (result != "Отмена" && result != null)
@@ -108,6 +108,16 @@ namespace DayOpenDoors
                     EventListView.ItemsSource = Master_Classes;
                 }
             }
+        }*/
+
+        private void Lections_Click(object sender, EventArgs e)
+        {
+            EventListView.ItemsSource = Lections;
+        }
+
+        private void Master_Click(object sender, EventArgs e)
+        {
+            EventListView.ItemsSource = Master_Classes;
         }
 
         private void Info_Click(object sender, EventArgs e)

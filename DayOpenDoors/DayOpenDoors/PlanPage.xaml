@@ -5,11 +5,8 @@
              Title="Мероприятия">
     <ContentPage.Content>
         <StackLayout Padding="0,10,0,0">
-            <Button x:Name="TypeButton" Clicked="ShowEvents"
-                    Text="Выберите тип мероприятия" BackgroundColor="White" TextColor="Blue"
-                    BorderRadius="10"/>
             <ListView x:Name="EventListView"
-            HasUnevenRows="True"
+            HasUnevenRows="True" Margin="5"
             ItemTapped="Info_Click">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -37,6 +34,12 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <StackLayout Orientation="Horizontal" Spacing="0">
+                <Button VerticalOptions="End" Text="Лекции" BorderRadius="0" Clicked="Lections_Click"
+                        BackgroundColor="Blue" TextColor="White" HorizontalOptions="FillAndExpand" />
+                <Button VerticalOptions="End" Text="Мастер-классы" BorderRadius="0" Clicked="Master_Click"
+                        BackgroundColor="Blue" TextColor="White" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -72,41 +72,34 @@ namespace DayOpenDoorsLibrary
                 }
                 else
                 {
-                    if (EventList[i].EventColor != Color.Gray)
-                    {
-                        EventList[i].Status = "Прошло";
-                        EventList[i].EventColor = Color.Gray;
-                        Event ev = EventList[i];
-                    }
+                    EventList[i].Status = "Прошло";
+                    EventList[i].EventColor = Color.Gray;
                 }
-                EventList.Sort((Event a, Event b) =>
+
+            }
+            EventList.Sort((Event a, Event b) =>
+            {
+                if (a.Time < b.Time)
                 {
-                    if (a.Time < b.Time)
+                    if (a.EventColor==Color.Gray&&b.EventColor!=Color.Gray)
                     {
-                        if (b.EventColor == Color.Red && a.EventColor == Color.Orange
-                        || b.EventColor == Color.Orange && a.EventColor == Color.Blue
-                        || b.EventColor == Color.Blue && a.EventColor == Color.Gray)
-                        {
-                            return 1;
-                        }
-                        return -1;
-                    }
-                    else if (b.Time < a.Time)
-                    {
-                        if (a.EventColor == Color.Red && b.EventColor == Color.Orange
-                        || a.EventColor == Color.Orange && b.EventColor == Color.Blue
-                        || a.EventColor == Color.Blue && b.EventColor == Color.Gray)
-                        {
-                            return -1;
-                        }
                         return 1;
                     }
-                    else
+                    return -1;
+                }
+                else if (b.Time < a.Time)
+                {
+                    if (b.EventColor == Color.Gray && a.EventColor != Color.Gray)
                     {
-                        return 0;
+                        return -1;
                     }
-                });
-            }
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            });
         }
 
     }
