@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DayOpenDoors.PlanPage"
-             Title="Мероприятия"
-             BackgroundImage="PlanBackground.jpg">
+             Title="Мероприятия">
     <ContentPage.Content>
         <StackLayout Padding="0,10,0,0">
             <ListView x:Name="EventListView"

@@ -47,6 +47,7 @@ namespace DayOpenDoors
                 await GetEvents();
             };
             InitializeComponent();
+            BackgroundImage = "PlanBackground.jpg";
 
             RefreshEvents();
 
@@ -105,30 +106,15 @@ namespace DayOpenDoors
             }
         }
 
-        /*private async void ShowEvents(object sender, EventArgs e)
-        {
-            var result = await DisplayActionSheet("Выберите тип мероприятия", "Отмена", null, "Лекции", "Мастер-классы");
-            if (result != "Отмена" && result != null)
-            {
-                TypeButton.Text = result;
-                if (result == "Лекции")
-                {
-                    EventListView.ItemsSource = Lections;
-                }
-                else
-                {
-                    EventListView.ItemsSource = Master_Classes;
-                }
-            }
-        }*/
-
         private void Lections_Click(object sender, EventArgs e)
         {
+            BackgroundImage = "background.jpg";
             EventListView.ItemsSource = Lections;
         }
 
         private void Master_Click(object sender, EventArgs e)
         {
+            BackgroundImage = "background.jpg";
             EventListView.ItemsSource = Master_Classes;
         }
 
