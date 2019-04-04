@@ -62,7 +62,7 @@ namespace DayOpenDoorsLibrary
                     else
                     {
                         EventList[i].Status = "Ожидается";
-                        EventList[i].EventColor = Color.Blue;
+                        EventList[i].EventColor = Color.FromHex("#265bab");
                     }
                 }
                 else if (DateTime.Now - EventList[i].Time < new TimeSpan(0, EventList[i].Duration, 0))

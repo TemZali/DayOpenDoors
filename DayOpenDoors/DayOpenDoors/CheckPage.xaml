@@ -6,11 +6,11 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Button">
-                <Setter Property="BackgroundColor" Value="Blue"/>
+                <Setter Property="BackgroundColor" Value="#265bab"/>
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="Padding" Value="5"/>
                 <Setter Property="BorderRadius" Value="0"/>
-                <Setter Property="BorderColor" Value="Blue"/>
+                <Setter Property="BorderColor" Value="#265bab"/>
                 <Setter Property="BorderWidth" Value="2"/>
             </Style>
         </ResourceDictionary>

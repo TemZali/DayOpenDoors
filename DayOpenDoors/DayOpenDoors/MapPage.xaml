@@ -88,6 +88,7 @@
 
                     <Button x:Name="EventButton" Grid.Row="0" Grid.Column="1" 
                         IsVisible="True" Text="О событии" 
+                        TextColor="#265bab" BorderColor="#265bab"
                         Clicked="EventButton_Clicked" HorizontalOptions="CenterAndExpand"/>
 
                     <Label x:Name="StartTime" Grid.Row="0" Grid.Column="0" IsVisible="True" Text="Время начала" 

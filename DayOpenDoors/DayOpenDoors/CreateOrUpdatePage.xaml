@@ -16,7 +16,7 @@
             <Entry Placeholder="Тип мероприятия" x:Name="TypeEntry" />
             <Entry Placeholder="Место проведения" x:Name="PlaceEntry" />
             <Editor Placeholder="Информация" x:Name="InfoEditor" VerticalOptions="FillAndExpand"/>
-            <Button x:Name="ChangeButton" BackgroundColor="White" TextColor="Blue" BorderColor="Blue" BorderRadius="10" HorizontalOptions="Center"/>
+            <Button x:Name="ChangeButton" BackgroundColor="White" TextColor="#265bab" BorderColor="#265bab" BorderRadius="10" HorizontalOptions="Center"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
