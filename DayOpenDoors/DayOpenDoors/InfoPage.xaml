@@ -4,37 +4,54 @@
              x:Class="DayOpenDoors.InfoPage"
              Title="Добро пожаловать!"
              BackgroundImage="FCSTree4.png">
-  <ContentPage.Content>
-    <StackLayout x:Name="InfoLayout" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="5">
-      <ListView x:Name="InfoList"
+    <ContentPage.Content>
+        <StackLayout x:Name="InfoLayout" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="5">
+            <ListView x:Name="InfoList" SeparatorVisibility="None"
       ItemsSource="{Binding EventList}"
       HasUnevenRows="True">
-        <ListView.ItemTemplate>
-          <DataTemplate>
-            <ViewCell>
-              <ViewCell.View>
-                <Frame CornerRadius="10" Padding="0" Margin="0,0,0,10" BackgroundColor="#f0f6fd">
-                  <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="FillAndExpand">
-                    <StackLayout HorizontalOptions="Start" MinimumWidthRequest="40">
-                      <Label Text="{Binding StartTime}" FontFamily="TimesNewRoman"/>
-                      <Label Text="{Binding EndTime}" VerticalOptions="EndAndExpand"/>
-                    </StackLayout>
-                    <BoxView BackgroundColor="{Binding EventColor}" WidthRequest="5" CornerRadius="10"/>
-                    <StackLayout HorizontalOptions="FillAndExpand">
-                      <Label Text="{Binding Name}" TextColor="Blue" MaxLines="3"/>
-                      <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-                        <Label Text="{Binding Type}" TextColor="Orange" HorizontalOptions="Start"/>
-                        <Label Text="{Binding Place}" HorizontalOptions="CenterAndExpand"/>
-                        <Label Text="{Binding Status}" TextColor="{Binding EventColor}"  HorizontalOptions="End"/>
-                      </StackLayout>
-                    </StackLayout>
-                  </StackLayout>
-                </Frame>
-              </ViewCell.View>
-            </ViewCell>
-          </DataTemplate>
-        </ListView.ItemTemplate>
-      </ListView>
-    </StackLayout>
-  </ContentPage.Content>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Frame CornerRadius="10" Padding="0" Margin="5" BackgroundColor="#f0f6fd">
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding StartTime}" TextColor="Blue" Grid.Column="0"
+                                                   Grid.Row="0" LineBreakMode="NoWrap" HorizontalTextAlignment="Center" VerticalOptions="Start"/>
+                                            <Label Text="{Binding EndTime}" TextColor="Blue" Grid.Row="1"
+                                                   HorizontalTextAlignment="Center" Grid.Column="0" VerticalOptions="End" LineBreakMode="NoWrap"/>
+                                        </Grid>
+                                        <BoxView BackgroundColor="{Binding EventColor}" WidthRequest="5" CornerRadius="5"/>
+                                        <Grid HorizontalOptions="FillAndExpand">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding Name}" TextColor="Blue" MaxLines="3" Grid.Row="0" Grid.ColumnSpan="3" VerticalOptions="Start"/>
+                                            <Label Text="{Binding Type}" TextColor="Orange" Grid.Column="0" Grid.Row="1" VerticalOptions="End"/>
+                                            <Label Text="{Binding Place}"  Grid.Row="1" HorizontalOptions="Center" Grid.Column="1" VerticalOptions="End"/>
+                                            <Label Text="{Binding Status}" Grid.Row="1" Grid.Column="2" VerticalOptions="End"
+                                                   TextColor="{Binding EventColor}" HorizontalOptions="End"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
