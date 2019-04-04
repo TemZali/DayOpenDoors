@@ -15,10 +15,10 @@
                    HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
             <Entry x:Name="EmailEntry" TextChanged="CheckEmailLength" 
                    HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
-            <Button x:Name="StatusButton" Text="Выберите статус" FontSize="Small" Clicked="ChooseStatus" BackgroundColor="Blue" TextColor="White"
-                    BorderColor="Blue" BorderRadius="0" BorderWidth="2" HorizontalOptions="FillAndExpand" />
-            <Button x:Name="AskOrCreateButton" BackgroundColor="Blue" TextColor="White"
-                    BorderColor="Blue" BorderRadius="0" BorderWidth="2" HorizontalOptions="FillAndExpand"/>
+            <Button x:Name="StatusButton" Text="Выберите статус" FontSize="Small" Clicked="ChooseStatus" BackgroundColor="#265bab" TextColor="White"
+                    BorderColor="#265bab" BorderRadius="0" BorderWidth="2" HorizontalOptions="FillAndExpand" />
+            <Button x:Name="AskOrCreateButton" BackgroundColor="#265bab" TextColor="White"
+                    BorderColor="#265bab" BorderRadius="0" BorderWidth="2" HorizontalOptions="FillAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

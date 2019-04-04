@@ -21,7 +21,7 @@
                     </StackLayout>
                     <BoxView BackgroundColor="{Binding EventColor}" WidthRequest="5" CornerRadius="10"/>
                     <StackLayout HorizontalOptions="FillAndExpand">
-                      <Label Text="{Binding Name}" TextColor="Blue" MaxLines="3"/>
+                      <Label Text="{Binding Name}" TextColor="#265bab" MaxLines="3"/>
                       <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                         <Label Text="{Binding Type}" TextColor="Orange" HorizontalOptions="Start"/>
                         <Label Text="{Binding Place}" HorizontalOptions="CenterAndExpand"/>

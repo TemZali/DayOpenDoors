@@ -20,7 +20,7 @@
                                         <StackLayout Spacing="0" Padding="0" HorizontalOptions="{Binding Orientation}" Margin="10" BackgroundColor="White">
                                             <StackLayout Orientation="Horizontal" Spacing="5">
                                                 <Label Text="{Binding Userstatus}" TextColor="Orange" HorizontalOptions="{Binding Orientation}"/>
-                                                <Label Text="{Binding Username}" TextColor="Blue" HorizontalOptions="{Binding Orientation}"/>
+                                                <Label Text="{Binding Username}" TextColor="#265bab" HorizontalOptions="{Binding Orientation}"/>
                                                 <Label Text="{Binding Time}" HorizontalOptions="End" VerticalOptions="End" FontSize="Small"/>
                                             </StackLayout>
                                             <Label Text="{Binding Mess}" TextColor="Black" LineBreakMode="WordWrap" HorizontalOptions="{Binding Orientation}"/>
@@ -33,7 +33,7 @@
                 </ListView>
             <StackLayout Orientation="Horizontal" BackgroundColor="White">
                 <Entry x:Name="TextEntry" Placeholder="Введите сообщение" VerticalOptions="End" HorizontalOptions="FillAndExpand" />
-                <Button Clicked="Click" Text="Отправить" BackgroundColor="White" TextColor="Blue" CornerRadius="10"/>
+                <Button Clicked="Click" Text="Отправить" BackgroundColor="White" TextColor="#265bab" CornerRadius="10"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

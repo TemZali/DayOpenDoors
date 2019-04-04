@@ -7,9 +7,9 @@
         <ResourceDictionary>
             <Style TargetType="Button">
                 <Setter Property="BackgroundColor" Value="White"/>
-                <Setter Property="TextColor" Value="Blue"/>
+                <Setter Property="TextColor" Value="#265bab"/>
                 <Setter Property="BorderRadius" Value="10"/>
-                <Setter Property="BorderColor" Value="Blue"/>
+                <Setter Property="BorderColor" Value="#265bab"/>
                 <Setter Property="BorderWidth" Value="2"/>
                 <Setter Property="Margin" Value="0,5,0,5"/>
             </Style>
@@ -22,7 +22,7 @@
                     <StackLayout Orientation="Horizontal" BackgroundColor="White">
                         <Image Source="CoolTrench.jpg" WidthRequest="50" HeightRequest="50" HorizontalOptions="Start"/>
                         <StackLayout VerticalOptions="CenterAndExpand" Spacing="0">
-                            <Label TextColor="Blue" x:Name="NameLabel" FontSize="Medium"/>
+                            <Label TextColor="#265bab" x:Name="NameLabel" FontSize="Medium"/>
                             <Label TextColor="Orange" x:Name="StatusLabel" FontSize="Small"/>
                         </StackLayout>
                     </StackLayout>
@@ -30,7 +30,7 @@
                     <Button Text="Чат" Clicked="Chat_Click"/>
                     <Button Text="Как добраться" Clicked="Way_Click"/>
                     <Button Text="Сменить аккаунт" Clicked="Exit"/>
-                    <Label Text="Made dy Artyom Zaydullin and Zhenya Torkunov" LineBreakMode="WordWrap" VerticalOptions="EndAndExpand" />
+                    <Label Text="Made by Artyom Zaydullin and Zhenya Torkunov" LineBreakMode="WordWrap" VerticalOptions="EndAndExpand" />
                 </StackLayout>
             </ContentPage.Content>
         </ContentPage>
