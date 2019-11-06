@@ -11,41 +11,24 @@ namespace FloorsLib
     {
         public Floor2()
         {
-            //Значение в хеш таблице - "abcd"
+            //Значение в хеш таблице - "abccd"
             //a - row number
             //b - row span
-            //c - column number
+            //cc - column number
             //d - column span
 
-            #region Левая часть
-            lrooms = new Hashtable();
-            //четная сторона
-            lrooms.Add("222", "0303");
-            lrooms.Add("219", "0132");
-            lrooms.Add("214", "0151");
-            //нечетная сторона
-            lrooms.Add("216", "2131");
-            lrooms.Add("217", "2141");
-            lrooms.Add("WC2", "2151");
-            #endregion
+            rooms = new Hashtable();
+            otherRooms = new Hashtable();
 
-            #region Средняя часть
-            mrooms = new Hashtable();
-            //четная сторона
-            mrooms.Add("204", "0101");
-            mrooms.Add("206", "0111");
-            mrooms.Add("208", "0122");
-            mrooms.Add("210", "0141");
-            mrooms.Add("212", "0151");
-            //нечетная сторона
-            mrooms.Add("205", "2106");
-            #endregion
+            rooms.Add("201", "03005");
+            rooms.Add("204", "03053");
+            rooms.Add("205", "03083");
+            rooms.Add("206", "03113");
+            rooms.Add("207", "03142");
+            rooms.Add("208", "03162");
 
-            #region Правая часть
-            rrooms = new Hashtable();
-            //четная сторона
-            rrooms.Add("Библиотека", "0307");
-            #endregion
+            rooms.Add("WC1", "21031");
+            rooms.Add("WC2", "21021");
         }
     }
 }

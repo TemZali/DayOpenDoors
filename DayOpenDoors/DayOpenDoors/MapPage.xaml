@@ -42,39 +42,42 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="2"/>
                 <RowDefinition Height="0" />
+                
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="4*" />
+                
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1"/>
+                
+                <RowDefinition Height="3*" />
                 <RowDefinition Height="2"/>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="2"/>
-                <RowDefinition Height="*" />
+                
+                <RowDefinition Height="7*" />
                 <RowDefinition Height="2"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2"/>
-                <ColumnDefinition Width="5*" />
-                <ColumnDefinition Width="2"/>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2"/>
-                <ColumnDefinition Width="5*" />
-                <ColumnDefinition Width="2"/>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2"/>
-                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2"/>
             </Grid.ColumnDefinitions>
 
             <Label x:Name="InfoLabel"  
-                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="11"
+                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
                    FontSize="Medium"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand"/>
 
-            <StackLayout Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="11">
+            <StackLayout Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3">
 
                 <Label x:Name="EventLabel" IsVisible="False" Text="Название события" 
                        HorizontalOptions="CenterAndExpand"/>
 
-                <Grid x:Name="InfoGrid" ColumnSpacing="0" RowSpacing="0" IsVisible="False" VerticalOptions="EndAndExpand" Padding="10, 0, 10, 2">
+                <Grid x:Name="InfoGrid" 
+                      ColumnSpacing="0" RowSpacing="0" 
+                      IsVisible="False" VerticalOptions="EndAndExpand" 
+                      Padding="10, 0, 10, 2">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -102,12 +105,12 @@
 
             </StackLayout>
 
-            <Grid x:Name="LeftGrid" ColumnSpacing="0" RowSpacing="0">
+            <Grid x:Name="UpperGrid" ColumnSpacing="0" RowSpacing="0">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="4*" />
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="4*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -117,38 +120,10 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-            </Grid>
-
-            <Grid x:Name="MiddleGrid" ColumnSpacing="0" RowSpacing="0">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="4*" />
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="4*" />
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-            </Grid>
-
-            <Grid x:Name="RightGrid" ColumnSpacing="0" RowSpacing="0">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="4*" />
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="4*" />
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -160,8 +135,30 @@
 
             </Grid>
 
-            <Image x:Name="im1" Source="elevator.jpg" Grid.Row="3" Grid.Column="3" VerticalOptions="FillAndExpand"/>
-            <Image x:Name="im2" Source="elevator.jpg" Grid.Row="3" Grid.Column="7" VerticalOptions="FillAndExpand"/>
+            <Grid x:Name="BottomGrid" ColumnSpacing="0" RowSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="1" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="1" Text="ЛИФТ" CornerRadius="0" />
+                <Button Grid.Row="0" Grid.Column="3" Text="ЛИФТ" CornerRadius="0" />
+                <Button Grid.Row="0" Grid.Column="5" Text="ЛИФТ" CornerRadius="0" />
+            </Grid>
         </Grid>
     </Grid>
 </ContentPage>

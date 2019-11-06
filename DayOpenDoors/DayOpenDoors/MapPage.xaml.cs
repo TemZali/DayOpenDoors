@@ -58,25 +58,29 @@ namespace DayOpenDoors
             MainGrid.Children.Add(FlatGrid, 0, 2);
             Grid.SetColumnSpan(FlatGrid, 6);
 
-            FlatGrid.Children.Add(LeftGrid, 1, 3);
-            FlatGrid.Children.Add(MiddleGrid, 5, 3);
-            FlatGrid.Children.Add(RightGrid, 9, 3);
+            FlatGrid.Children.Add(UpperGrid, 1, 3);
+            FlatGrid.Children.Add(BottomGrid, 1, 7);
 
-            for (int i = 0; i < 11; i += 2)
+            for (int i = 0; i < 3; i += 2)
             {
                 BoxView v = new BoxView();
                 v.Color = Color.Black;
                 FlatGrid.Children.Add(v, i, 2);
-                Grid.SetRowSpan(v, 3);
-                if (i < 10)
-                    for (int j = 2; j < 5; j += 2)
-                    {
-                        BoxView h = new BoxView();
-                        h.Color = Color.Black;
-                        FlatGrid.Children.Add(h, i, j);
-                        Grid.SetColumnSpan(h, 3);
-                    }
+                Grid.SetRowSpan(v, 7);
             }
+
+            for (int i = 2; i < 9; i += 2)
+            {
+                BoxView v = new BoxView();
+                v.Color = Color.Black;
+                FlatGrid.Children.Add(v, 0, i);
+                Grid.SetColumnSpan(v, 3);
+            }
+
+            BoxView s = new BoxView();
+            s.Color = Color.Black;
+            BottomGrid.Children.Add(s, 7, 0);
+            Grid.SetRowSpan(s, 2);
 
             FirstButton_Clicked(new object(), new EventArgs());
         }
@@ -102,7 +106,7 @@ namespace DayOpenDoors
         private void InAppearing()
         {
             FlatGrid.IsVisible = true;
-            CreateMap(floor.Lrooms, floor.Mrooms, floor.Rrooms);
+            CreateMap(floor.Rooms, floor.OtherRooms);
         }
 
         #region Кнопки этажей
@@ -150,14 +154,34 @@ namespace DayOpenDoors
         #endregion
 
 
-        private void CreateMap(Hashtable left, Hashtable middle, Hashtable right)
+        private void CreateMap(Hashtable map, Hashtable extra)
         {
             Invalidate();
 
-            AddAPart(left, LeftGrid);
-            AddAPart(middle, MiddleGrid);
-            AddAPart(right, RightGrid);
+            UpdateWCs();
+
+            AddAPart(map, UpperGrid);
+            AddAPart(extra, BottomGrid);
+
+            foreach (var item in BottomGrid.Children)
+            {
+                if (item is Button)
+                    item.Style = plainButton;
+            }
         }
+
+        private void UpdateWCs()
+        {
+            if (!flatroomsButtons.Contains("WC1"))
+                return;
+            UpperGrid.Children.Remove(((Button)flatroomsButtons["WC1"]));
+            flatroomsButtons.Remove("WC1");
+            Rooms.Remove("WC1");
+            UpperGrid.Children.Remove(((Button)flatroomsButtons["WC2"]));
+            flatroomsButtons.Remove("WC2");
+            Rooms.Remove("WC2");
+        }
+
 
         //добавление части этажа
         private void AddAPart(Hashtable part, Grid grid)
@@ -215,8 +239,8 @@ namespace DayOpenDoors
 
                 int row = int.Parse(val.Substring(0, 1));
                 int rowspan = int.Parse(val.Substring(1, 1));
-                int column = int.Parse(val.Substring(2, 1));
-                int columnspan = int.Parse(val.Substring(3, 1));
+                int column = int.Parse(val.Substring(2, 2));
+                int columnspan = int.Parse(val.Substring(4, 1));
 
                 //добавление на карту
                 grid.Children.Add((Button)flatroomsButtons[key], column, row);

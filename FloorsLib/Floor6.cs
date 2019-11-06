@@ -11,53 +11,33 @@ namespace FloorsLib
     {
         public Floor6()
         {
-            //Значение в хеш таблице - "abcd"
+            //Значение в хеш таблице - "abccd"
             //a - row number
             //b - row span
-            //c - column number
+            //cc - column number
             //d - column span
+            
+            rooms = new Hashtable();
+            otherRooms = new Hashtable();
 
-            #region Левая часть
-            lrooms = new Hashtable();
-            //четная сторона
-            lrooms.Add("626", "0101");
-            lrooms.Add("624", "0111");
-            lrooms.Add("620", "0121");
-            lrooms.Add("618", "0132");
-            lrooms.Add("616", "0151");
-            //нечетная сторона
-            lrooms.Add("625", "2101");
-            lrooms.Add("623", "2111");
-            lrooms.Add("621", "2121");
-            lrooms.Add("619", "2131");
-            lrooms.Add("617", "2141");
-            lrooms.Add("WC1", "2151");
-            #endregion
+            rooms.Add("601", "01002");
+            rooms.Add("604", "21002");
+            rooms.Add("602", "01023");
+            rooms.Add("603", "11023");
 
-            #region Средняя часть
-            mrooms = new Hashtable();
-            mrooms.Add("622", "0306");
-            #endregion
+            rooms.Add("607", "03051");
+            rooms.Add("608", "03061");
+            rooms.Add("609", "02071");
+            rooms.Add("610", "03082");
+            rooms.Add("611", "03102");
+            rooms.Add("612", "03122");
+            rooms.Add("613", "03142");
+            rooms.Add("614", "03162");
 
-            #region Правая часть
-            rrooms = new Hashtable();
-            //четная сторона
-            rrooms.Add("614", "0101");
-            rrooms.Add("612", "0111");
-            rrooms.Add("610", "0121");
-            rrooms.Add("608", "0131");
-            rrooms.Add("606", "0141");
-            rrooms.Add("604", "0151");
-            rrooms.Add("602", "0161");
+            rooms.Add("WC1", "21031");
+            rooms.Add("WC2", "21021");
 
-            rrooms.Add("600", "1161");
-            //нечетная сторона
-            rrooms.Add("607", "2101");
-            rrooms.Add("605", "2112");
-            rrooms.Add("603", "2131");
-            rrooms.Add("601а", "2141");
-            rrooms.Add("601", "2152");
-            #endregion
+            otherRooms.Add("615", "02091");
         }
     }
 }

@@ -11,27 +11,24 @@ namespace FloorsLib
     {
         public Floor1()
         {
-            //Значение в хеш таблице - "abcd"
+            //Значение в хеш таблице - "abccd"
             //a - row number
             //b - row span
-            //c - column number
+            //cc - column number
             //d - column span
 
-            #region Левая часть
-            lrooms = new Hashtable();
-            lrooms.Add("Типография", "0306");
-            #endregion
+            rooms = new Hashtable();
+            otherRooms = new Hashtable();
 
-            #region Средняя часть
-            mrooms = new Hashtable();
-            mrooms.Add("Вход", "0106");
-            mrooms.Add("Гардероб", "2106");
-            #endregion
+            rooms.Add("401", "03014");
+            rooms.Add("404", "03053");
+            rooms.Add("405", "03083");
+            rooms.Add("406", "03113");
+            rooms.Add("407", "03142");
+            rooms.Add("408", "03162");
 
-            #region Средняя часть
-            rrooms = new Hashtable();
-            rrooms.Add("Столовая", "0307");
-            #endregion
+            rooms.Add("WC1", "21031");
+            rooms.Add("WC2", "21021");
         }
     }
 }

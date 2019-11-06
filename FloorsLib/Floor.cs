@@ -9,17 +9,16 @@ namespace FloorsLib
 {
     public class Floor
     {
-        //Значение в хеш таблице - "abcd"
+        //Значение в хеш таблице - "abccd"
         //a - row number
         //b - row span
-        //c - column number
+        //cc - column number
         //d - column span
-        protected Hashtable lrooms;
-        protected Hashtable mrooms;
-        protected Hashtable rrooms;
 
-        public Hashtable Lrooms { get => lrooms; }
-        public Hashtable Mrooms { get => mrooms; }
-        public Hashtable Rrooms { get => rrooms; }
+        protected Hashtable rooms;
+        protected Hashtable otherRooms;
+
+        public Hashtable Rooms { get => rooms; }
+        public Hashtable OtherRooms { get => otherRooms; }
     }
 }
