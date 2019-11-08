@@ -15,10 +15,12 @@ namespace FloorsLib
         //cc - column number
         //d - column span
 
-        protected Hashtable rooms;
-        protected Hashtable otherRooms;
+        protected Hashtable rooms = new Hashtable();
+        protected Hashtable hall = new Hashtable();
+        protected Hashtable otherRooms = new Hashtable();
 
         public Hashtable Rooms { get => rooms; }
+        public Hashtable Hall { get => hall; }
         public Hashtable OtherRooms { get => otherRooms; }
     }
 }

@@ -13,6 +13,7 @@ namespace DayOpenDoors
     {
         Image image = new Image();
         Hashtable flatroomsButtons = new Hashtable();
+        Hashtable walls = new Hashtable();
         Hashtable Rooms = new Hashtable();
         DateTime time;
         Floor floor;
@@ -27,7 +28,7 @@ namespace DayOpenDoors
                 new Setter { Property = Button.TextColorProperty, Value = Color.Black },
                 new Setter { Property = Button.BorderColorProperty, Value = Color.Black },
                 new Setter { Property = Button.PaddingProperty, Value = "0, 0, 0, 0" },
-                new Setter { Property = Button.BorderWidthProperty, Value = 1 },
+                new Setter { Property = Button.BorderWidthProperty, Value = 0.1 },
                 new Setter { Property = Button.FontSizeProperty, Value = 10 }
            }
         };
@@ -59,6 +60,7 @@ namespace DayOpenDoors
             Grid.SetColumnSpan(FlatGrid, 6);
 
             FlatGrid.Children.Add(UpperGrid, 1, 3);
+            FlatGrid.Children.Add(MiddleGrid, 1, 5);
             FlatGrid.Children.Add(BottomGrid, 1, 7);
 
             for (int i = 0; i < 3; i += 2)
@@ -79,6 +81,7 @@ namespace DayOpenDoors
 
             BoxView s = new BoxView();
             s.Color = Color.Black;
+            walls.Add("wall", s);
             BottomGrid.Children.Add(s, 7, 0);
             Grid.SetRowSpan(s, 2);
 
@@ -106,7 +109,8 @@ namespace DayOpenDoors
         private void InAppearing()
         {
             FlatGrid.IsVisible = true;
-            CreateMap(floor.Rooms, floor.OtherRooms);
+
+            CreateMap(floor.Rooms, floor.Hall, floor.OtherRooms);
         }
 
         #region Кнопки этажей
@@ -114,72 +118,85 @@ namespace DayOpenDoors
         {
             floor = new Floor1();
             InAppearing();
-            FloorLabel.Text = "1 Этаж";
+            FloorLabel.Text = "Корпус R. 1 Этаж";
         }
 
         private void SecondButton_Clicked(object sender, EventArgs e)
         {
             floor = new Floor2();
             InAppearing();
-            FloorLabel.Text = "2 Этаж";
+            FloorLabel.Text = "Корпус R. 2 Этаж";
         }
 
         private void ThirdButton_Clicked(object sender, EventArgs e)
         {
             floor = new Floor3();
             InAppearing();
-            FloorLabel.Text = "3 Этаж";
+            FloorLabel.Text = "Корпус R. 3 Этаж";
         }
 
         private void FourthButton_Clicked(object sender, EventArgs e)
         {
             floor = new Floor4();
             InAppearing();
-            FloorLabel.Text = "4 Этаж";
+            FloorLabel.Text = "Корпус R. 4 Этаж";
         }
 
         private void FifthButton_Clicked(object sender, EventArgs e)
         {
             floor = new Floor5();
             InAppearing();
-            FloorLabel.Text = "5 Этаж";
+            FloorLabel.Text = "Корпус R. 5 Этаж";
         }
 
         private void SixthButton_Clicked(object sender, EventArgs e)
         {
             floor = new Floor6();
             InAppearing();
-            FloorLabel.Text = "6 Этаж";
+            FloorLabel.Text = "Корпус R. 6 Этаж";
         }
         #endregion
 
 
-        private void CreateMap(Hashtable map, Hashtable extra)
+        private void CreateMap(Hashtable map, Hashtable hall, Hashtable extra)
         {
             Invalidate();
 
-            UpdateWCs();
-
             AddAPart(map, UpperGrid);
+            AddAPart(hall, MiddleGrid);
             AddAPart(extra, BottomGrid);
 
             foreach (var item in BottomGrid.Children)
-            {
                 if (item is Button)
                     item.Style = plainButton;
-            }
+
+            if (!(floor is Floor1))
+                UpdateWCs(map);
         }
 
-        private void UpdateWCs()
+        private void UpdateWCs(Hashtable map)
         {
-            if (!flatroomsButtons.Contains("WC1"))
-                return;
-            UpperGrid.Children.Remove(((Button)flatroomsButtons["WC1"]));
-            flatroomsButtons.Remove("WC1");
-            Rooms.Remove("WC1");
-            UpperGrid.Children.Remove(((Button)flatroomsButtons["WC2"]));
-            flatroomsButtons.Remove("WC2");
-            Rooms.Remove("WC2");
+            if (flatroomsButtons.Contains("WC1"))
+            {
+                UpperGrid.Children.Remove(((Button)flatroomsButtons["WC1"]));
+                flatroomsButtons.Remove("WC1");
+                Rooms.Remove("WC1");
+                UpperGrid.Children.Remove(((Button)flatroomsButtons["WC2"]));
+                flatroomsButtons.Remove("WC2");
+                Rooms.Remove("WC2");
+            }
+
+            for (int i = 1; i <= 2; i++)
+            {
+                string key = "WC" + i;
+
+                flatroomsButtons.Add(key, new Button { Text = "WC", Style = plainButton });
+                ((Button)flatroomsButtons[key]).CornerRadius = 0;
+                Rooms.Add(key, new Room(key));
+
+                AddToGrid(UpperGrid, key, map[key].ToString());
+                ChangeColor();
+            }
         }
 
 
@@ -188,6 +205,17 @@ namespace DayOpenDoors
         {
             foreach (string key in part.Keys)
             {
+                if (key[0] == '.')
+                {
+                    if (walls.ContainsKey(key))
+                        ((BoxView)walls[key]).IsVisible = true;
+                    else
+                    {
+                        walls.Add(key, new BoxView() { Color = Color.Black });
+                        goto addition;
+                    }
+                }
+
                 //проверка на нахождение кнопки на экране
                 if (flatroomsButtons.ContainsKey(key))
                 {
@@ -195,7 +223,10 @@ namespace DayOpenDoors
                 }
                 else
                 {
-                    flatroomsButtons.Add(key, new Button { Text = (key[0] == 'W') ? "WC" : key, Style = plainButton });
+                    flatroomsButtons.Add(key, new Button { Style = plainButton, 
+                        Text = key[0] == 'W' ? "WC" : 
+                               key[0] == '!' ? "" : key});
+
                     ((Button)flatroomsButtons[key]).CornerRadius = 0;
                     Rooms.Add(key, new Room(key));
 
@@ -235,27 +266,38 @@ namespace DayOpenDoors
                     ChangeColor();
                 }
 
-                string val = part[key].ToString();
-
-                int row = int.Parse(val.Substring(0, 1));
-                int rowspan = int.Parse(val.Substring(1, 1));
-                int column = int.Parse(val.Substring(2, 2));
-                int columnspan = int.Parse(val.Substring(4, 1));
-
-                //добавление на карту
-                grid.Children.Add((Button)flatroomsButtons[key], column, row);
-                Grid.SetColumnSpan((Button)flatroomsButtons[key], columnspan);
-                Grid.SetRowSpan((Button)flatroomsButtons[key], rowspan);
+                addition:
+                AddToGrid(grid, key, part[key].ToString());
             }
+        }
+
+        private void AddToGrid(Grid grid, string key, string val)
+        {
+            int row = int.Parse(val.Substring(0, 1));
+            int rowspan = int.Parse(val.Substring(1, 1));
+            int column = int.Parse(val.Substring(2, 2));
+            int columnspan = int.Parse(val.Substring(4, 1));
+            
+            if (key[0] == '.')
+            {
+                grid.Children.Add((BoxView)walls[key], column, column + columnspan, row, row + rowspan);
+                return;
+            }
+
+            //добавление на карту
+            grid.Children.Add((Button)flatroomsButtons[key], column, column + columnspan, row, row + rowspan);
         }
 
         //скрытие кнопок
         private void Invalidate()
         {
             foreach (Button button in flatroomsButtons.Values)
-            {
                 button.IsVisible = false;
-            }
+
+            foreach (BoxView wall in walls.Values)
+                wall.IsVisible = false;
+
+            ((BoxView)walls["wall"]).IsVisible = !(floor is Floor1);
         }
 
         //смена цвета занятых кабинетов

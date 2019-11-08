@@ -43,14 +43,14 @@
                 <RowDefinition Height="2"/>
                 <RowDefinition Height="0" />
                 
-                <RowDefinition Height="1"/>
+                <RowDefinition Height="2"/>
                 <RowDefinition Height="4*" />
                 
-                <RowDefinition Height="1"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="1"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="0"/>
                 
-                <RowDefinition Height="3*" />
+                <RowDefinition Height="2*" />
                 <RowDefinition Height="2"/>
                 
                 <RowDefinition Height="7*" />
@@ -69,7 +69,7 @@
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand"/>
 
-            <StackLayout Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3">
+            <StackLayout Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3">
 
                 <Label x:Name="EventLabel" IsVisible="False" Text="Название события" 
                        HorizontalOptions="CenterAndExpand"/>
@@ -135,6 +135,35 @@
 
             </Grid>
 
+            <Grid x:Name="MiddleGrid" ColumnSpacing="0" RowSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="1" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+            </Grid>
+            
             <Grid x:Name="BottomGrid" ColumnSpacing="0" RowSpacing="0">
 
                 <Grid.RowDefinitions>
@@ -149,15 +178,17 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="4*" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="3*" />
                     <ColumnDefinition Width="1" />
-                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Row="0" Grid.Column="1" Text="ЛИФТ" CornerRadius="0" />
                 <Button Grid.Row="0" Grid.Column="3" Text="ЛИФТ" CornerRadius="0" />
                 <Button Grid.Row="0" Grid.Column="5" Text="ЛИФТ" CornerRadius="0" />
+                <Image Source="stairs.jpg" Grid.Row="0" Grid.Column="2" HorizontalOptions="Start"/>
+                <Image Source="stairs.jpg" Grid.Row="0" Grid.Column="6" HorizontalOptions="StartAndExpand"/>
             </Grid>
         </Grid>
     </Grid>

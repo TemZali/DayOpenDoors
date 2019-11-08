@@ -17,18 +17,11 @@ namespace FloorsLib
             //cc - column number
             //d - column span
 
-            rooms = new Hashtable();
-            otherRooms = new Hashtable();
-
-            rooms.Add("401", "03014");
-            rooms.Add("404", "03053");
-            rooms.Add("405", "03083");
-            rooms.Add("406", "03113");
-            rooms.Add("407", "03142");
-            rooms.Add("408", "03162");
-
-            rooms.Add("WC1", "21031");
-            rooms.Add("WC2", "21021");
+            rooms.Add("!3!", "03003");
+            rooms.Add("!4!", "03033");
+            rooms.Add("!5!", "03063");
+            rooms.Add("!6!", "03093");
+            rooms.Add("Гардероб", "03126");
         }
     }
 }
