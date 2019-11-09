@@ -190,6 +190,32 @@
                 <Image Source="stairs.jpg" Grid.Row="0" Grid.Column="2" HorizontalOptions="Start"/>
                 <Image Source="stairs.jpg" Grid.Row="0" Grid.Column="6" HorizontalOptions="StartAndExpand"/>
             </Grid>
+
+            <Grid x:Name="FirstFloorGrid" ColumnSpacing="0" RowSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="2" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="6*" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="FreeButton" Grid.Row="1" Grid.Column="0" CornerRadius="0" />
+                <ImageButton x:Name="BirdButton" Grid.Row="1" Grid.Column="1" Source="Bird.png" 
+                             VerticalOptions="Fill" BackgroundColor="#ffffff"
+                             Pressed="Bird_Pressed" Released="Bird_Released" 
+                             Clicked="Bird_Clicked"/>
+                <Button x:Name ="CafeButton"  
+                        Grid.Row="1" Grid.Column="3"
+                        CornerRadius="0" />
+                <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Color="Black" />
+            </Grid>
         </Grid>
     </Grid>
 </ContentPage>

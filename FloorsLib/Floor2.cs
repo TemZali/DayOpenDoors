@@ -29,8 +29,8 @@ namespace FloorsLib
 
             hall.Add(".1.2", "01019");
             hall.Add(".2.2", "01108");
-            hall.Add(".5.2", "31009");
-            hall.Add(".6.2", "31097");
+            hall.Add(".3.2", "31009");
+            hall.Add(".4.2", "31097");
         }
     }
 }

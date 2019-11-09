@@ -56,33 +56,40 @@ namespace DayOpenDoors
             FlatGrid.IsVisible = false;
             BindingContext = image.Source;
 
+            CafeButton.Style = plainButton;
+            FreeButton.Style = plainButton;
+            CafeButton.Text = $"Кафе \"Груша\"";
+
             MainGrid.Children.Add(FlatGrid, 0, 2);
             Grid.SetColumnSpan(FlatGrid, 6);
 
             FlatGrid.Children.Add(UpperGrid, 1, 3);
             FlatGrid.Children.Add(MiddleGrid, 1, 5);
             FlatGrid.Children.Add(BottomGrid, 1, 7);
+            FlatGrid.Children.Add(FirstFloorGrid, 1, 8);
+
+            BoxView s;
 
             for (int i = 0; i < 3; i += 2)
             {
-                BoxView v = new BoxView();
-                v.Color = Color.Black;
-                FlatGrid.Children.Add(v, i, 2);
-                Grid.SetRowSpan(v, 7);
+                s = new BoxView() { Color = Color.Black };
+                FlatGrid.Children.Add(s, i, 2);
+                Grid.SetRowSpan(s, 7);
             }
 
             for (int i = 2; i < 9; i += 2)
             {
-                BoxView v = new BoxView();
-                v.Color = Color.Black;
-                FlatGrid.Children.Add(v, 0, i);
-                Grid.SetColumnSpan(v, 3);
+                s = new BoxView() { Color = Color.Black };
+                FlatGrid.Children.Add(s, 0, i);
+                Grid.SetColumnSpan(s, 3);
+
+                if (i == 8)
+                    walls.Add("bottom", s);
             }
 
-            BoxView s = new BoxView();
-            s.Color = Color.Black;
+            s = new BoxView() { Color = Color.Black };
             walls.Add("wall", s);
-            BottomGrid.Children.Add(s, 7, 0);
+            BottomGrid.Children.Add((BoxView)walls["wall"], 7, 0);
             Grid.SetRowSpan(s, 2);
 
             FirstButton_Clicked(new object(), new EventArgs());
@@ -110,7 +117,27 @@ namespace DayOpenDoors
         {
             FlatGrid.IsVisible = true;
 
+            ExtraPart();
+            Update();
+            ChangeColor();
+
             CreateMap(floor.Rooms, floor.Hall, floor.OtherRooms);
+        }
+
+        private void ExtraPart()
+        {
+            if (floor is Floor1)
+            {
+                FirstFloorGrid.IsVisible = true;
+                FlatGrid.RowDefinitions[8].Height = new GridLength(4, GridUnitType.Star);
+                FlatGrid.RowDefinitions[9].Height = new GridLength(3, GridUnitType.Star);
+            }
+            else
+            {
+                FirstFloorGrid.IsVisible = false;
+                FlatGrid.RowDefinitions[8].Height = 2;
+                FlatGrid.RowDefinitions[9].Height = new GridLength(7, GridUnitType.Star);
+            }
         }
 
         #region Кнопки этажей
@@ -156,7 +183,23 @@ namespace DayOpenDoors
             FloorLabel.Text = "Корпус R. 6 Этаж";
         }
         #endregion
+        private void Bird_Clicked(object sender, EventArgs e)
+        {
+            DisplayAlert("Ворона", "Это место встречи", "ОК");
+        }
 
+        private void Bird_Pressed(object sender, EventArgs e)
+        {
+            EventLabel.Text = "Место встречи";
+            EventLabel.IsVisible = true;
+            BirdButton.BackgroundColor = Color.FromHex("#ff6666");
+        }
+
+        private void Bird_Released(object sender, EventArgs e)
+        {
+            EventLabel.IsVisible = false;
+            BirdButton.BackgroundColor = Color.FromHex("#ffffff");
+        }
 
         private void CreateMap(Hashtable map, Hashtable hall, Hashtable extra)
         {
@@ -247,7 +290,7 @@ namespace DayOpenDoors
                             EndTime.Text = "Время окончания\n" + (Events[currentIndex].Time + new TimeSpan(0, Events[currentIndex].Duration, 0)).ToShortTimeString();
 
                             EventLabel.IsVisible = true;
-                            InfoGrid.IsVisible = true;
+                            InfoGrid.IsVisible = !(floor is Floor1);
                             //EventButton.IsVisible = true;
                         }
                         else
@@ -298,6 +341,8 @@ namespace DayOpenDoors
                 wall.IsVisible = false;
 
             ((BoxView)walls["wall"]).IsVisible = !(floor is Floor1);
+            ((BoxView)walls["bottom"]).IsVisible = !(floor is Floor1);
+
         }
 
         //смена цвета занятых кабинетов
